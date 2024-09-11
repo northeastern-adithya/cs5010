@@ -146,7 +146,7 @@ public class MyDate {
   /**
    * String representation of the object.
    *
-   * @return Padded representation of MyDate object.
+   * @return Padded representation of MyDate object in ISO date format.
    */
   @Override
   public String toString() {

@@ -483,4 +483,277 @@ public class TestMyDate {
     MyDate myDate = new MyDate(1, 1, 0);
     assertEquals("0000-01-01", myDate.toString());
   }
+
+  /**
+   * Tests for date addition from Jan to Feb.
+   */
+  @Test
+  public void testDateAdditionFromJanToFeb() {
+    MyDate myDate = new MyDate(31, 1, 2024);
+    myDate.advance(1);
+    assertEquals("2024-02-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition in Feb during leap year.
+   */
+  @Test
+  public void testDateAdditionInFebDuringLeapYear() {
+    MyDate myDate = new MyDate(28, 2, 2024);
+    myDate.advance(1);
+    assertEquals("2024-02-29", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition in Feb to March during leap year.
+   */
+  @Test
+  public void testDateAdditionInFebToMarchDuringLeapYear() {
+    MyDate myDate = new MyDate(29, 2, 2024);
+    myDate.advance(1);
+    assertEquals("2024-03-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition in Feb during non leap year.
+   */
+  @Test
+  public void testDateAdditionInFebDuringNonLeapYear() {
+    MyDate myDate = new MyDate(28, 2, 2023);
+    myDate.advance(1);
+    assertEquals("2023-03-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from March to April.
+   */
+  @Test
+  public void testDateAdditionFromMarchToApril() {
+    MyDate myDate = new MyDate(31, 3, 2024);
+    myDate.advance(1);
+    assertEquals("2024-04-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from April to May.
+   */
+  @Test
+  public void testDateAdditionFromAprilToMay() {
+    MyDate myDate = new MyDate(30, 4, 2024);
+    myDate.advance(1);
+    assertEquals("2024-05-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from May to June.
+   */
+  @Test
+  public void testDateAdditionFromMayToJune() {
+    MyDate myDate = new MyDate(31, 5, 2024);
+    myDate.advance(1);
+    assertEquals("2024-06-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from June to July.
+   */
+  @Test
+  public void testDateAdditionFromJuneToJuly() {
+    MyDate myDate = new MyDate(30, 6, 2024);
+    myDate.advance(1);
+    assertEquals("2024-07-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from July to Aug.
+   */
+  @Test
+  public void testDateAdditionFromJulyToAug() {
+    MyDate myDate = new MyDate(31, 7, 2024);
+    myDate.advance(1);
+    assertEquals("2024-08-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from Aug to Sept.
+   */
+  @Test
+  public void testDateAdditionFromAugToSept() {
+    MyDate myDate = new MyDate(31, 8, 2024);
+    myDate.advance(1);
+    assertEquals("2024-09-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from Sept to Oct.
+   */
+  @Test
+  public void testDateAdditionFromSeptToOct() {
+    MyDate myDate = new MyDate(30, 9, 2024);
+    myDate.advance(1);
+    assertEquals("2024-10-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from Oct to Nov.
+   */
+  @Test
+  public void testDateAdditionFromOctToNovember() {
+    MyDate myDate = new MyDate(31, 10, 2024);
+    myDate.advance(1);
+    assertEquals("2024-11-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from Nov to Dec.
+   */
+  @Test
+  public void testDateAdditionFromNovToDec() {
+    MyDate myDate = new MyDate(30, 11, 2024);
+    myDate.advance(1);
+    assertEquals("2024-12-01", myDate.toString());
+  }
+
+  /**
+   * Tests for date addition from Dec to Jan.
+   */
+  @Test
+  public void testDateAdditionFromDecToJan() {
+    MyDate myDate = new MyDate(31, 12, 2024);
+    myDate.advance(1);
+    assertEquals("2025-01-01", myDate.toString());
+  }
+
+
+  /**
+   * Tests for date subtraction from Dec to Nov.
+   */
+  @Test
+  public void testDateSubtractionFromDecToNov() {
+    MyDate myDate = new MyDate(1, 12, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-11-30", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from Nov to Oct.
+   */
+  @Test
+  public void testDateSubtractionFromNovToOct() {
+    MyDate myDate = new MyDate(1, 11, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-10-31", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from Oct to Sept.
+   */
+  @Test
+  public void testDateSubtractionFromOctToSept() {
+    MyDate myDate = new MyDate(1, 10, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-09-30", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from Sept to Aug.
+   */
+  @Test
+  public void testDateSubtractionFromSeptToAug() {
+    MyDate myDate = new MyDate(1, 9, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-08-31", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from Aug to July.
+   */
+  @Test
+  public void testDateSubtractionFromAugToJuly() {
+    MyDate myDate = new MyDate(1, 8, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-07-31", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from July to June.
+   */
+  @Test
+  public void testDateSubtractionFromJulyToJune() {
+    MyDate myDate = new MyDate(1, 7, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-06-30", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from June to May.
+   */
+  @Test
+  public void testDateSubtractionFromJuneToMay() {
+    MyDate myDate = new MyDate(1, 6, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-05-31", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from May to April.
+   */
+  @Test
+  public void testDateSubtractionFromMayToApril() {
+    MyDate myDate = new MyDate(1, 5, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-04-30", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from April to March.
+   */
+  @Test
+  public void testDateSubtractionFromAprilToMarch() {
+    MyDate myDate = new MyDate(1, 4, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-03-31", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from March to Feb during leap year.
+   */
+  @Test
+  public void testDateSubtractionFromMarchToFebDuringLeapYear() {
+    MyDate myDate = new MyDate(1, 3, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-02-29", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from March to Feb during non leap year.
+   */
+  @Test
+  public void testDateSubtractionFromMarchToFebDuringNonLeapYear() {
+    MyDate myDate = new MyDate(1, 3, 2023);
+    myDate.advance(-1);
+    assertEquals("2023-02-28", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from Feb to Jan.
+   */
+  @Test
+  public void testDateSubtractionFromFebToJan() {
+    MyDate myDate = new MyDate(1, 2, 2024);
+    myDate.advance(-1);
+    assertEquals("2024-01-31", myDate.toString());
+  }
+
+  /**
+   * Tests for date subtraction from Jan to December.
+   */
+  @Test
+  public void testDateSubtractionFromJanToDecember() {
+    MyDate myDate = new MyDate(1, 1, 2024);
+    myDate.advance(-1);
+    assertEquals("2023-12-31", myDate.toString());
+  }
+
+
 }
