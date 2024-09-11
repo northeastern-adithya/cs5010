@@ -251,7 +251,6 @@ public class TestMyDate {
    */
   @Test
   public void validateWithInvalidYear() {
-    assertThrows(IllegalArgumentException.class, () -> new MyDate(1, 1, 10000));
     assertThrows(IllegalArgumentException.class, () -> new MyDate(1, 1, -1));
     assertThrows(IllegalArgumentException.class, () -> new MyDate(1, 12, null));
   }
@@ -279,6 +278,14 @@ public class TestMyDate {
   @Test
   public void toStringForPaddingYear() {
     assertEquals("0020-10-10", new MyDate(10, 10, 20).toString());
+  }
+
+  /**
+   * Checks toString method for padding year with five digits.
+   */
+  @Test
+  public void toStringForPaddingYearWithFiveDigits() {
+    assertEquals("20000-10-10", new MyDate(10, 10, 20000).toString());
   }
 
 
@@ -466,5 +473,14 @@ public class TestMyDate {
     MyDate myDate = new MyDate(10, 3, 2025);
     myDate.advance(-894);
     assertEquals(LocalDate.of(2025, 3, 10).minusDays(894).toString(), myDate.toString());
+  }
+
+  /**
+   * Tests if initialization of 0000-01-01 happens properly.
+   */
+  @Test
+  public void testInitializationOfBoundaryDate() {
+    MyDate myDate = new MyDate(1, 1, 0);
+    assertEquals("0000-01-01", myDate.toString());
   }
 }
