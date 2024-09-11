@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
@@ -16,6 +18,7 @@ public class TestMyDate {
     assertEquals("2000-01-01", new MyDate(1, 1, 2000).toString());
     assertEquals("2000-01-10", new MyDate(10, 1, 2000).toString());
     assertEquals("2000-01-21", new MyDate(21, 1, 2000).toString());
+    assertEquals("2000-01-31", new MyDate(31, 1, 2000).toString());
   }
 
   /**
@@ -27,6 +30,7 @@ public class TestMyDate {
     assertEquals("2000-02-10", new MyDate(10, 2, 2000).toString());
     assertEquals("2000-02-21", new MyDate(21, 2, 2000).toString());
     assertEquals("2000-02-28", new MyDate(28, 2, 2000).toString());
+    assertEquals("2000-02-29", new MyDate(29, 2, 2000).toString());
   }
 
   /**
@@ -37,6 +41,7 @@ public class TestMyDate {
     assertEquals("2000-03-01", new MyDate(1, 3, 2000).toString());
     assertEquals("2000-03-10", new MyDate(10, 3, 2000).toString());
     assertEquals("2000-03-21", new MyDate(21, 3, 2000).toString());
+    assertEquals("2000-03-31", new MyDate(31, 3, 2000).toString());
   }
 
   /**
@@ -47,6 +52,7 @@ public class TestMyDate {
     assertEquals("2000-04-01", new MyDate(1, 4, 2000).toString());
     assertEquals("2000-04-10", new MyDate(10, 4, 2000).toString());
     assertEquals("2000-04-21", new MyDate(21, 4, 2000).toString());
+    assertEquals("2000-04-30", new MyDate(30, 4, 2000).toString());
   }
 
   /**
@@ -57,6 +63,7 @@ public class TestMyDate {
     assertEquals("2000-05-01", new MyDate(1, 5, 2000).toString());
     assertEquals("2000-05-10", new MyDate(10, 5, 2000).toString());
     assertEquals("2000-05-21", new MyDate(21, 5, 2000).toString());
+    assertEquals("2000-05-31", new MyDate(31, 5, 2000).toString());
   }
 
   /**
@@ -67,6 +74,7 @@ public class TestMyDate {
     assertEquals("2000-06-01", new MyDate(1, 6, 2000).toString());
     assertEquals("2000-06-10", new MyDate(10, 6, 2000).toString());
     assertEquals("2000-06-21", new MyDate(21, 6, 2000).toString());
+    assertEquals("2000-06-30", new MyDate(30, 6, 2000).toString());
   }
 
   /**
@@ -77,6 +85,7 @@ public class TestMyDate {
     assertEquals("2000-07-01", new MyDate(1, 7, 2000).toString());
     assertEquals("2000-07-10", new MyDate(10, 7, 2000).toString());
     assertEquals("2000-07-21", new MyDate(21, 7, 2000).toString());
+    assertEquals("2000-07-31", new MyDate(31, 7, 2000).toString());
   }
 
   /**
@@ -87,6 +96,7 @@ public class TestMyDate {
     assertEquals("2000-08-01", new MyDate(1, 8, 2000).toString());
     assertEquals("2000-08-10", new MyDate(10, 8, 2000).toString());
     assertEquals("2000-08-21", new MyDate(21, 8, 2000).toString());
+    assertEquals("2000-08-31", new MyDate(31, 8, 2000).toString());
   }
 
   /**
@@ -97,6 +107,7 @@ public class TestMyDate {
     assertEquals("2000-09-01", new MyDate(1, 9, 2000).toString());
     assertEquals("2000-09-10", new MyDate(10, 9, 2000).toString());
     assertEquals("2000-09-21", new MyDate(21, 9, 2000).toString());
+    assertEquals("2000-09-30", new MyDate(30, 9, 2000).toString());
   }
 
   /**
@@ -107,6 +118,7 @@ public class TestMyDate {
     assertEquals("2000-10-01", new MyDate(1, 10, 2000).toString());
     assertEquals("2000-10-10", new MyDate(10, 10, 2000).toString());
     assertEquals("2000-10-21", new MyDate(21, 10, 2000).toString());
+    assertEquals("2000-10-31", new MyDate(31, 10, 2000).toString());
   }
 
   /**
@@ -117,6 +129,7 @@ public class TestMyDate {
     assertEquals("2000-11-01", new MyDate(1, 11, 2000).toString());
     assertEquals("2000-11-10", new MyDate(10, 11, 2000).toString());
     assertEquals("2000-11-21", new MyDate(21, 11, 2000).toString());
+    assertEquals("2000-11-30", new MyDate(30, 11, 2000).toString());
   }
 
   /**
@@ -127,6 +140,7 @@ public class TestMyDate {
     assertEquals("2000-12-01", new MyDate(1, 12, 2000).toString());
     assertEquals("2000-12-10", new MyDate(10, 12, 2000).toString());
     assertEquals("2000-12-21", new MyDate(21, 12, 2000).toString());
+    assertEquals("2000-12-31", new MyDate(31, 12, 2000).toString());
   }
 
   /**
@@ -134,13 +148,13 @@ public class TestMyDate {
    */
   @Test
   public void validateMonthsWithThirtyOneDays() {
-    assertEquals("2000-01-01", new MyDate(1, 1, 2000).toString());
-    assertEquals("2000-03-01", new MyDate(1, 3, 2000).toString());
-    assertEquals("2000-05-01", new MyDate(1, 5, 2000).toString());
-    assertEquals("2000-07-01", new MyDate(1, 7, 2000).toString());
-    assertEquals("2000-08-01", new MyDate(1, 8, 2000).toString());
-    assertEquals("2000-10-01", new MyDate(1, 10, 2000).toString());
-    assertEquals("2000-12-01", new MyDate(1, 12, 2000).toString());
+    assertEquals("2000-01-31", new MyDate(31, 1, 2000).toString());
+    assertEquals("2000-03-31", new MyDate(31, 3, 2000).toString());
+    assertEquals("2000-05-31", new MyDate(31, 5, 2000).toString());
+    assertEquals("2000-07-31", new MyDate(31, 7, 2000).toString());
+    assertEquals("2000-08-31", new MyDate(31, 8, 2000).toString());
+    assertEquals("2000-10-31", new MyDate(31, 10, 2000).toString());
+    assertEquals("2000-12-31", new MyDate(31, 12, 2000).toString());
   }
 
   /**
@@ -148,10 +162,10 @@ public class TestMyDate {
    */
   @Test
   public void validateMonthsWithThirtyDays() {
-    assertEquals("2000-04-01", new MyDate(1, 4, 2000).toString());
-    assertEquals("2000-06-01", new MyDate(1, 6, 2000).toString());
-    assertEquals("2000-09-01", new MyDate(1, 9, 2000).toString());
-    assertEquals("2000-11-01", new MyDate(1, 11, 2000).toString());
+    assertEquals("2000-04-30", new MyDate(30, 4, 2000).toString());
+    assertEquals("2000-06-30", new MyDate(30, 6, 2000).toString());
+    assertEquals("2000-09-30", new MyDate(30, 9, 2000).toString());
+    assertEquals("2000-11-30", new MyDate(30, 11, 2000).toString());
   }
 
   /**
@@ -201,7 +215,6 @@ public class TestMyDate {
     assertThrows(IllegalArgumentException.class, () -> new MyDate(32, 10, 2000));
     assertThrows(IllegalArgumentException.class, () -> new MyDate(32, 11, 2000));
     assertThrows(IllegalArgumentException.class, () -> new MyDate(32, 12, 2000));
-
   }
 
   /**
@@ -217,6 +230,7 @@ public class TestMyDate {
    */
   @Test
   public void validateWithInvalidDay() {
+    assertThrows(IllegalArgumentException.class, () -> new MyDate(null, 12, 2000));
     assertThrows(IllegalArgumentException.class, () -> new MyDate(0, 1, 2001));
     assertThrows(IllegalArgumentException.class, () -> new MyDate(-1, 1, 2001));
     assertThrows(IllegalArgumentException.class, () -> new MyDate(1000, 1, 2001));
@@ -228,7 +242,8 @@ public class TestMyDate {
   @Test
   public void validateWithInvalidMonth() {
     assertThrows(IllegalArgumentException.class, () -> new MyDate(29, 20, 2001));
-    assertThrows(IllegalArgumentException.class, () -> new MyDate(29, -20, 2001));
+    assertThrows(IllegalArgumentException.class, () -> new MyDate(29, -1, 2001));
+    assertThrows(IllegalArgumentException.class, () -> new MyDate(28, null, 2000));
   }
 
   /**
@@ -238,6 +253,7 @@ public class TestMyDate {
   public void validateWithInvalidYear() {
     assertThrows(IllegalArgumentException.class, () -> new MyDate(1, 1, 10000));
     assertThrows(IllegalArgumentException.class, () -> new MyDate(1, 1, -1));
+    assertThrows(IllegalArgumentException.class, () -> new MyDate(1, 12, null));
   }
 
 
@@ -263,5 +279,192 @@ public class TestMyDate {
   @Test
   public void toStringForPaddingYear() {
     assertEquals("0020-10-10", new MyDate(10, 10, 20).toString());
+  }
+
+
+  /**
+   * Tests going advancing the number of days.
+   */
+  @Test
+  public void testDateGoingForwardInDays() {
+    MyDate myDate = new MyDate(10, 10, 2024);
+    myDate.advance(10);
+    assertEquals(LocalDate.of(2024, 10, 10).plusDays(10).toString(), myDate.toString());
+  }
+
+  /**
+   * Tests going back with the number of days.
+   */
+  @Test
+  public void testDateGoingBackwardInDays() {
+    MyDate myDate = new MyDate(20, 10, 2024);
+    myDate.advance(-10);
+    assertEquals(LocalDate.of(2024, 10, 20).minusDays(10).toString(), myDate.toString());
+
+  }
+
+  /**
+   * Tests going forward by months for both thirty days and thirty one days months.
+   */
+  @Test
+  public void testDateGoingForwardInMonths() {
+    {
+      // For thirty one days month
+      MyDate myDate = new MyDate(10, 10, 2024);
+      myDate.advance(30);
+      assertEquals(LocalDate.of(2024, 10, 10).plusDays(30).toString(), myDate.toString());
+
+    }
+
+    {
+      // For thirty days month
+      MyDate myDate = new MyDate(10, 9, 2024);
+      myDate.advance(30);
+      assertEquals(LocalDate.of(2024, 9, 10).plusDays(30).toString(), myDate.toString());
+    }
+  }
+
+  /**
+   * Tests going backward by months for both thirty days and thirty one days months.
+   */
+  @Test
+  public void testDateGoingBackwardInMonths() {
+    {
+      // For thirty one days month
+      MyDate myDate = new MyDate(10, 10, 2024);
+      myDate.advance(-30);
+      assertEquals(LocalDate.of(2024, 10, 10).minusDays(30).toString(), myDate.toString());
+
+    }
+
+    {
+      // For thirty days month
+      MyDate myDate = new MyDate(10, 9, 2024);
+      myDate.advance(-30);
+      assertEquals(LocalDate.of(2024, 9, 10).minusDays(30).toString(), myDate.toString());
+    }
+  }
+
+  /**
+   * Tests going forward by year.
+   */
+  @Test
+  public void testDateGoingForwardInYear() {
+
+    MyDate myDate = new MyDate(11, 9, 2024);
+    myDate.advance(865);
+    assertEquals(LocalDate.of(2024, 9, 11).plusDays(865).toString(), myDate.toString());
+
+  }
+
+  /**
+   * Tests going backwards by year.
+   */
+  @Test
+  public void testDateGoingBackwardsInYear() {
+    MyDate myDate = new MyDate(11, 9, 2024);
+    myDate.advance(-865);
+    assertEquals(LocalDate.of(2024, 9, 11).minusDays(865).toString(), myDate.toString());
+
+  }
+
+  /**
+   * Tests going forward by boundary condition.
+   */
+  @Test
+  public void testDateGoingForwardBoundaryCondition() {
+    {
+      MyDate myDate = new MyDate(11, 9, 2024);
+      myDate.advance(2912919);
+      assertEquals("9999-12-31", myDate.toString());
+    }
+
+    {
+      MyDate myDate = new MyDate(11, 9, 2024);
+      myDate.advance(3912919);
+      assertEquals("12737-11-27", myDate.toString());
+    }
+
+  }
+
+
+  /**
+   * Tests going forward by backward condition to not cross 0000-01-01.
+   */
+  @Test
+  public void testDateGoingBackwardBoundaryCondition() {
+    {
+      MyDate myDate = new MyDate(11, 9, 2024);
+      myDate.advance(-739507);
+      assertEquals("0000-01-01", myDate.toString());
+    }
+
+    {
+      MyDate myDate = new MyDate(11, 9, 2024);
+      myDate.advance(-839141);
+      assertEquals("0000-01-01", myDate.toString());
+    }
+  }
+
+  /**
+   * Tests going forward in days during a leap year.
+   */
+  @Test
+  public void testDateGoingForwardForLeapYear() {
+    MyDate myDate = new MyDate(10, 2, 2024);
+    myDate.advance(10);
+    assertEquals(LocalDate.of(2024, 2, 10).plusDays(10).toString(), myDate.toString());
+
+  }
+
+  /**
+   * Tests going backward in days during a leap year.
+   */
+  @Test
+  public void testDateGoingBackwardForLeapYear() {
+    MyDate myDate = new MyDate(10, 2, 2024);
+    myDate.advance(-10);
+    assertEquals(LocalDate.of(2024, 2, 10).minusDays(10).toString(), myDate.toString());
+
+  }
+
+  /**
+   * Tests going forward in months during a leap year.
+   */
+  @Test
+  public void testDateGoingForwardForMonthInLeapYear() {
+    MyDate myDate = new MyDate(10, 2, 2024);
+    myDate.advance(30);
+    assertEquals(LocalDate.of(2024, 2, 10).plusDays(30).toString(), myDate.toString());
+  }
+
+  /**
+   * Tests going backward in months during a leap year.
+   */
+  @Test
+  public void testDateGoingBackwardForMonthInLeapYear() {
+    MyDate myDate = new MyDate(10, 3, 2024);
+    myDate.advance(-30);
+    assertEquals(LocalDate.of(2024, 3, 10).minusDays(30).toString(), myDate.toString());
+  }
+
+  /**
+   * Tests going forward in years with leap year included.
+   */
+  @Test
+  public void testDateGoingForwardForYearsInLeapYear() {
+    MyDate myDate = new MyDate(10, 3, 2023);
+    myDate.advance(894);
+    assertEquals(LocalDate.of(2023, 3, 10).plusDays(894).toString(), myDate.toString());
+  }
+
+  /**
+   * Tests going backward in years with leap year included.
+   */
+  @Test
+  public void testDateGoingBackwardForYearsInLeapYear() {
+    MyDate myDate = new MyDate(10, 3, 2025);
+    myDate.advance(-894);
+    assertEquals(LocalDate.of(2025, 3, 10).minusDays(894).toString(), myDate.toString());
   }
 }

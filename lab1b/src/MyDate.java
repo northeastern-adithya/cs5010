@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class represents a date. A date has a year, a month and a day.
@@ -10,15 +11,15 @@ public class MyDate {
   /**
    * Variable to represent a  day.
    */
-  private final int day;
+  private int day;
   /**
    * Variable to represent a  month.
    */
-  private final int month;
+  private int month;
   /**
    * Variable to represent a year.
    */
-  private final int year;
+  private int year;
 
   /**
    * List containing months having 31 days.
@@ -40,11 +41,117 @@ public class MyDate {
    * @param year  the year of given date.
    * @throws IllegalArgumentException if the given date in invalid.
    */
-  public MyDate(int day, int month, int year) throws IllegalArgumentException {
+  public MyDate(Integer day, Integer month, Integer year) throws IllegalArgumentException {
+    if (Objects.isNull(day) || Objects.isNull(month) || Objects.isNull(year)) {
+      throw new IllegalArgumentException("Received day,month or year as null");
+    }
     this.day = day;
     this.month = month;
     this.year = year;
     validateMyDate();
+  }
+
+
+  /**
+   * Advances the date based on given number of days.
+   *
+   * @param days number of days to advance, if negative will subtract the date.
+   */
+  public void advance(int days) {
+    if (days > 0) {
+      advanceForward(days);
+    } else if (days < 0) {
+      advanceReverse(days);
+
+    }
+  }
+
+  /**
+   * Advances the date in a forward manner.
+   *
+   * @param days number of days to advance.
+   */
+  private void advanceForward(int days) {
+    while (days > 0) {
+      if (doesMonthContainThirtyOneDays()) {
+        if (this.day == 31) {
+          this.day = 1;
+          if (this.month == 12) {
+            this.month = 1;
+            this.year++;
+          } else {
+            this.month++;
+          }
+        } else {
+          this.day++;
+        }
+      } else if (doesMonthContainThirtyDays()) {
+        if (this.day == 30) {
+          this.day = 1;
+          this.month++;
+        } else {
+          this.day++;
+        }
+      } else if (isFebruary()) {
+        if (isLeapYear()) {
+          if (this.day == 29) {
+            this.day = 1;
+            this.month++;
+          } else {
+            this.day++;
+          }
+        } else {
+          if (this.day == 28) {
+            this.day = 1;
+            this.month++;
+          } else {
+            this.day++;
+          }
+        }
+      }
+      days--;
+    }
+  }
+
+  /**
+   * Advances the date in a reverse manner.
+   *
+   * @param days number of days to go backwards.
+   */
+  private void advanceReverse(int days) {
+    days = Math.abs(days);
+    while (days > 0) {
+      if (this.day == 1) {
+        if (this.month == 1) {
+          this.year -= 1;
+          this.month = 12;
+          this.day = 31;
+        } else if (this.month == 2) {
+          this.month -= 1;
+          this.day = 31;
+        } else if (this.month == 3) {
+          this.month -= 1;
+          if (isLeapYear()) {
+            this.day = 29;
+          } else {
+            this.day = 28;
+          }
+        } else {
+          this.month -= 1;
+          if (doesMonthContainThirtyDays()) {
+            this.day = 30;
+          } else if (doesMonthContainThirtyOneDays()) {
+            this.day = 31;
+          }
+        }
+      } else {
+        this.day--;
+      }
+      days--;
+      if (this.day == 1 && this.month == 1 && this.year == 0) {
+        break;
+      }
+    }
   }
 
 
@@ -168,10 +275,10 @@ public class MyDate {
   /**
    * Pads year part of date.
    *
-   * @return Pads year to have 4 digits.
+   * @return Pads year to have minimum 4 digits.
    */
   private String padYear() {
-    return String.format("%04d", this.year);
+    return this.year > 9999 ? String.format("%d", this.year) : String.format("%04d", this.year);
   }
 
   /**
