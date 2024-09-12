@@ -8,6 +8,8 @@ import static org.junit.Assert.assertThrows;
 
 /**
  * Tests to check working of MyDate class.
+ * Is in a different package than root to verify testing of
+ * MyDate.java across packages.
  */
 public class TestMyDate {
   /**
