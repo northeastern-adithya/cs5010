@@ -10,7 +10,8 @@ public class ISODateFormatter implements DateFormatter {
    * Constructor to initiate ISO date formatter.
    */
   public ISODateFormatter() {
-    // Is an empty constructor.
+    // Is an empty constructor to prevent initializing it every time a formatter is called.
+    // Hence, the format function takes in day, month and year as arguments.
   }
 
   /**

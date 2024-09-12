@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * This class represents constants required for working of MyDate.
+ * This class represents common constants required for working of MyDate.
  */
 public class DateConstants {
 
