@@ -1,6 +1,5 @@
 package box;
 
-
 import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -38,28 +37,43 @@ public class SimpleBoxSet implements BoxSet {
 
   }
 
+
   private int[] findIntersection(int[] box1, int[] box2) {
-    int x1 = box1[0];
-    int y1 = box1[1];
-    int x2 = x1 + box1[2];
-    int y2 = y1 + box1[3];
+    Point lowerLeftOfBoxOne = new Point(box1[0], box1[1]);
+    Point upperRightOfBoxOne = new Point(lowerLeftOfBoxOne.x + box1[2], lowerLeftOfBoxOne.y + box1[3]);
 
-    int x3 = box2[0];
-    int y3 = box2[1];
-    int x4 = x3 + box2[2];
-    int y4 = y3 + box2[3];
+    Point lowerLeftOfBoxTwo = new Point(box2[0], box2[1]);
+    Point upperRightOfBoxTwo = new Point(lowerLeftOfBoxTwo.x + box2[2], lowerLeftOfBoxTwo.y + box2[3]);
 
-    int xPointOfIntersection = Math.max(x1, x3);
-    int yPointOfIntersection = Math.max(y1, y3);
-    int widthOfIntersection = Math.min(x2, x4) - xPointOfIntersection;
-    int heightOfIntersection = Math.min(y2, y4) - yPointOfIntersection;
+    int xPointOfIntersection = Math.max(lowerLeftOfBoxOne.x, lowerLeftOfBoxTwo.x);
+    int yPointOfIntersection = Math.max(lowerLeftOfBoxOne.y, lowerLeftOfBoxTwo.y);
+    int widthOfIntersection = Math.min(upperRightOfBoxOne.x, upperRightOfBoxTwo.x) - xPointOfIntersection;
+    int heightOfIntersection = Math.min(upperRightOfBoxOne.y, upperRightOfBoxTwo.y) - yPointOfIntersection;
     return new int[]{xPointOfIntersection, yPointOfIntersection, widthOfIntersection, heightOfIntersection};
   }
 
   private Set<int[]> findContainedDifference(int[] box, int[] containedBox) {
-    // TODO: implement the method
     Set<int[]> containedDifference = new HashSet<>();
+    Point lowerLeftOfBox = new Point(box[0], box[1]);
+    Point upperRightOfBox = new Point(lowerLeftOfBox.x + box[2], lowerLeftOfBox.y + box[3]);
 
+    Point lowerLeftOfContainedBox = new Point(containedBox[0], containedBox[1]);
+    Point upperRightOfContainedBox = new Point(lowerLeftOfContainedBox.x + containedBox[2], lowerLeftOfContainedBox.y + containedBox[3]);
+
+    Point[] setOne = new Point[]{new Point(lowerLeftOfBox), new Point(lowerLeftOfContainedBox.x, upperRightOfBox.y)};
+    Point[] setTwo = new Point[]{new Point(upperRightOfContainedBox.x, lowerLeftOfBox.y), new Point(upperRightOfBox)};
+    Point[] setThree = new Point[]{new Point(lowerLeftOfContainedBox.x, upperRightOfContainedBox.y), new Point(upperRightOfContainedBox.x, upperRightOfBox.y)};
+    Point[] setFour = new Point[]{new Point(lowerLeftOfContainedBox.x, lowerLeftOfBox.y), new Point(upperRightOfContainedBox.x, lowerLeftOfContainedBox.y)};
+
+    for (Point[] set : new Point[][]{setOne, setTwo, setThree, setFour}) {
+      int x = set[0].x;
+      int y = set[0].y;
+      int width = Math.abs(set[1].x - set[0].x);
+      int height = Math.abs(set[1].y - set[0].y);
+      if (width != 0 && height != 0) {
+        containedDifference.add(new int[]{x, y, width, height});
+      }
+    }
     return containedDifference;
   }
 
