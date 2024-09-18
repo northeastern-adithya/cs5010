@@ -1,12 +1,12 @@
 /**
- * Utility class for testing.
+ * Utility class for testing box set.
  */
-public class TestUtility {
+public class TestBoxSetUtility {
 
   /**
    * Private constructor of utility class.
    */
-  private TestUtility(){
+  private TestBoxSetUtility(){
 
   }
 

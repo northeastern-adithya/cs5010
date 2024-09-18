@@ -6,8 +6,8 @@ package box;
 public interface BoxSet {
   /**
    * Adds a new box to the  existing set.
-   * If box overlaps with existing box, the intersection is taken and
-   * contained difference is added to the set else the new box is added as is.
+   * First subtracts the new box with the existing set to remove extra area of overlapping.
+   * Then adds the new box.
    *
    * @param x      the x-coordinate of the lower-left corner of the box
    * @param y      the y-coordinate of the lower-left corner of the box
@@ -19,8 +19,9 @@ public interface BoxSet {
 
   /**
    * Subtracts a box from the existing set.
-   * If box overlaps with existing box, the intersection is taken and
-   * contained difference is added to the set else the existing box is added as it is.
+   * If new box overlaps with existing box, the intersection is taken and
+   * contained difference with the existing box is added to the set
+   * else the existing box is added as it is.
    *
    * @param x      the x-coordinate of the lower-left corner of the box
    * @param y      the y-coordinate of the lower-left corner of the box
@@ -32,6 +33,7 @@ public interface BoxSet {
 
   /**
    * Returns the boxes present in the set.
+   * Order is not guaranteed in this method.
    *
    * @return the boxes present in the set in a 2d array.
    */

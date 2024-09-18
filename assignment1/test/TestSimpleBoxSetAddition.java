@@ -100,9 +100,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(6, 1, 5, 3);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 4, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 1, 5, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 4, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 1, 5, 3}));
   }
 
   /**
@@ -114,9 +114,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(-3, 0, 3, 3);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, 3, 1, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, 0, 3, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-4, 2, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, 3, 1, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, 0, 3, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-4, 2, 1, 2}));
   }
 
   /**
@@ -128,9 +128,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(-3, -5, 3, 3);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, -2, 1, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, -5, 3, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-4, -3, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, -2, 1, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, -5, 3, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-4, -3, 1, 2}));
   }
 
 
@@ -143,9 +143,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(4, -4, 4, 2);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, -2, 2, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, -4, 4, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{2, -3, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, -2, 2, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, -4, 4, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, -3, 2, 2}));
   }
 
   /**
@@ -157,9 +157,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(3, 2, 2, 2);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{5, 2, 3, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 4, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{5, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 4, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 2, 2}));
   }
 
   /**
@@ -171,10 +171,10 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(5, 2, 2, 3);
     assertEquals(4, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 2, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{7, 2, 1, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{5, 2, 2, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{5, 5, 2, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 2, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{7, 2, 1, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{5, 2, 2, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{5, 5, 2, 1}));
   }
 
   /**
@@ -186,9 +186,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(6, 2, 2, 2);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 4, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 2, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 4, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 2, 2, 2}));
   }
 
   /**
@@ -200,10 +200,10 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(3, 3, 2, 2);
     assertEquals(4, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{5, 2, 3, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 5, 2, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 3, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 2, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{5, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 5, 2, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 3, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 2, 1}));
   }
 
   /**
@@ -215,9 +215,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(3, 4, 2, 2);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{5, 2, 3, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 4, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{5, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 4, 2, 2}));
   }
 
 
@@ -230,14 +230,14 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(4, 5, 3, 1);
     assertEquals(4, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 1, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{7, 2, 1, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 5, 3, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 2, 3, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 1, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{7, 2, 1, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 5, 3, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 2, 3, 3}));
   }
 
   /**
-   * Tests addition of box containedand touching the upper right corner of another box.
+   * Tests addition of box contained and touching the upper right corner of another box.
    */
   @Test
   public void testBoxAdditionContainedInUpperRightCorner() {
@@ -245,9 +245,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(6, 5, 2, 1);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 2, 2, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 5, 2, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 2, 2, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 5, 2, 1}));
   }
 
   /**
@@ -259,10 +259,10 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(6, 3, 2, 2);
     assertEquals(4, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 5, 2, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 2, 2, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 3, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 5, 2, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 2, 2, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 3, 2, 2}));
   }
 
   /**
@@ -274,11 +274,11 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(4, 3, 3, 2);
     assertEquals(5, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{7, 2, 1, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 5, 3, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 1, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 2, 3, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 3, 3, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{7, 2, 1, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 5, 3, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 1, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 2, 3, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 3, 3, 2}));
   }
 
 
@@ -291,8 +291,8 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(3, 2, 5, 2);
     assertEquals(2, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 5, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 4, 5, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 5, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 4, 5, 2}));
   }
 
   /**
@@ -304,8 +304,8 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(6, 2, 5, 4);
     assertEquals(2, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 2, 5, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 2, 5, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
   }
 
   /**
@@ -318,9 +318,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(6, 4, 5, 4);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 2, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 4, 5, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 2, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 4, 5, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
   }
 
   /**
@@ -333,9 +333,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(6, 0, 5, 4);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 4, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{6, 0, 5, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 4, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 3, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 0, 5, 4}));
   }
 
   /**
@@ -348,9 +348,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(0, 0, 4, 4);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{0, 0, 4, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 4, 1, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 2, 4, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{0, 0, 4, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 4, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 2, 4, 4}));
   }
 
   /**
@@ -364,9 +364,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(-3, 4, 7, 4);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 1, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, 4, 7, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 2, 4, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, 4, 7, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 2, 4, 4}));
   }
 
 
@@ -379,7 +379,7 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(3, 2, 6, 5);
     assertEquals(1, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 2, 6, 5}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 2, 6, 5}));
   }
 
   /**
@@ -391,9 +391,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(-3, 0, 2, 2);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, -1, 1, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, 0, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-4, -1, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, -1, 1, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, 0, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-4, -1, 1, 2}));
 
   }
 
@@ -406,8 +406,8 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(0, -3, 3, 2);
     assertEquals(2, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{0, -3, 3, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-2, -3, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{0, -3, 3, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-2, -3, 2, 2}));
   }
 
   /**
@@ -419,9 +419,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(1, -2, 4, 4);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{2, -3, 3, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{1, -2, 4, 4}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{5, -3, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, -3, 3, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{1, -2, 4, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{5, -3, 1, 2}));
   }
 
 
@@ -437,12 +437,12 @@ public class TestSimpleBoxSetAddition {
     assertEquals(6, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
 
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, 2, 1, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-4, 1, 1, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-1, 1, 3, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-3, 0, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{-1, 0, 2, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{2, 1, 3, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, 2, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-4, 1, 1, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-1, 1, 3, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-3, 0, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-1, 0, 2, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, 1, 3, 3}));
 
   }
 
@@ -456,9 +456,9 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(8, 1, 2, 3);
     assertEquals(3, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{1, 1, 2, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{5, 1, 2, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{8, 1, 2, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{1, 1, 2, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{5, 1, 2, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{8, 1, 2, 3}));
   }
 
 
@@ -471,8 +471,8 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(3, 1, 2, 3);
     assertEquals(2, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{1, 1, 2, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{3, 1, 2, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{1, 1, 2, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 1, 2, 3}));
   }
 
 
@@ -488,10 +488,10 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(4, 2, 4, 2);
     assertEquals(4, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{1, 1, 3, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{1, 2, 3, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 1, 4, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{4, 2, 4, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{1, 1, 3, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{1, 2, 3, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 1, 4, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{4, 2, 4, 2}));
   }
 
 
@@ -507,13 +507,13 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(7, 3, 2, 2);
     assertEquals(7, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{7, 0, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{0, 0, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{7, 2, 1, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{1, 2, 1, 1}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{7, 3, 2, 2}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{2, 1, 5, 3}));
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{0, 3, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{7, 0, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{0, 0, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{7, 2, 1, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{1, 2, 1, 1}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{7, 3, 2, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, 1, 5, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{0, 3, 2, 2}));
 
 
   }
@@ -526,7 +526,76 @@ public class TestSimpleBoxSetAddition {
     boxSet.add(1, 1, 7, 3);
     assertEquals(1, boxSet.size());
     int[][] actualBoxSet = boxSet.getBoxes();
-    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{1, 1, 7, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{1, 1, 7, 3}));
   }
+
+
+  /**
+   * Test box addition across all four quadrants.
+   */
+  @Test
+  public void testBoxAdditionAcrossAllFourQuadrants() {
+    boxSet.add(-2, -4, 5, 4);
+    boxSet.add(-4, -2, 3, 2);
+    boxSet.add(-1, -5, 3, 2);
+    boxSet.add(2, -2, 3, 4);
+    boxSet.add(-1, 2, 3, 2);
+    assertEquals(7, boxSet.size());
+    int[][] actualBoxSet = boxSet.getBoxes();
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-2, -4, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-4, -2, 3, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-1, -5, 3, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-1, 2, 3, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, -4, 1, 2}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{-1, -3, 3, 3}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, -2, 3, 4}));
+  }
+
+  /**
+   * Test same box added twice.
+   */
+  @Test
+  public void testSameBoxAddedTwice() {
+    boxSet.add(2, 1, 5, 4);
+    boxSet.add(2, 1, 5, 4);
+    assertEquals(1, boxSet.size());
+    int[][] actualBoxSet = boxSet.getBoxes();
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, 1, 5, 4}));
+  }
+
+
+  /**
+   * Test an overlapping box splits existing box into boxes of same area.
+   */
+  @Test
+  public void testAdditionToGetBoxesOfSameArea() {
+    boxSet.add(2, 1, 5, 4);
+    boxSet.add(3, 0, 3, 6);
+    assertEquals(3, boxSet.size());
+    int[][] actualBoxSet = boxSet.getBoxes();
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 1, 1, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 0, 3, 6}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, 1, 1, 4}));
+  }
+
+
+  /**
+   * Test adding a non overlapping box to existing overlapping boxes.
+   */
+  @Test
+  public void testAddingNonOverLappingBoxToExistingOverlappedBoxes() {
+    boxSet.add(2, 1, 5, 4);
+    boxSet.add(3, 0, 3, 6);
+    boxSet.add(9, 2, 3, 3);
+
+    assertEquals(4, boxSet.size());
+    int[][] actualBoxSet = boxSet.getBoxes();
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{6, 1, 1, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{3, 0, 3, 6}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{2, 1, 1, 4}));
+    assertTrue(TestBoxSetUtility.containsBox(actualBoxSet, new int[]{9, 2, 3, 3}));
+
+  }
+
 
 }
