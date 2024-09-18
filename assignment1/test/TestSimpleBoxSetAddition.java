@@ -518,5 +518,15 @@ public class TestSimpleBoxSetAddition {
 
   }
 
+  /**
+   * Tests addition from empty set of boxes.
+   */
+  @Test
+  public void testAdditionFromAnyEmptySetOfBoxes() {
+    boxSet.add(1, 1, 7, 3);
+    assertEquals(1, boxSet.size());
+    int[][] actualBoxSet = boxSet.getBoxes();
+    assertTrue(TestUtility.containsBox(actualBoxSet, new int[]{1, 1, 7, 3}));
+  }
 
 }
