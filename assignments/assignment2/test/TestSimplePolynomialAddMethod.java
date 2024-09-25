@@ -12,14 +12,17 @@ import static org.junit.Assert.assertNotEquals;
  * Class to test the cases for add method in SimplePolynomial.
  */
 public class TestSimplePolynomialAddMethod {
-  private Polynomial simplePolynomialUnderTest;
+  /**
+   * The polynomial object to be tested.
+   */
+  private Polynomial polynomialUnderTest;
 
   /**
-   * Set up the polynomial under test with the initial object.
+   * Set up the polynomial under test with no elements.
    */
   @Before
   public void setUp() {
-    simplePolynomialUnderTest = new SimplePolynomial();
+    polynomialUnderTest = new SimplePolynomial();
   }
 
 
@@ -28,16 +31,16 @@ public class TestSimplePolynomialAddMethod {
    */
   @Test
   public void testAdditionWithSameDegreeWithAllCoefficientsPresent() {
-    simplePolynomialUnderTest.addTerm(3, 2);
-    simplePolynomialUnderTest.addTerm(-2, 1);
-    simplePolynomialUnderTest.addTerm(5, 0);
+    polynomialUnderTest.addTerm(3, 2);
+    polynomialUnderTest.addTerm(-2, 1);
+    polynomialUnderTest.addTerm(5, 0);
 
     Polynomial anotherPolynomialToAdd = new SimplePolynomial();
     anotherPolynomialToAdd.addTerm(2, 2);
     anotherPolynomialToAdd.addTerm(1, 1);
     anotherPolynomialToAdd.addTerm(3, 0);
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
 
     Polynomial expectedResult = new SimplePolynomial();
     expectedResult.addTerm(5, 2);
@@ -47,10 +50,10 @@ public class TestSimplePolynomialAddMethod {
     assertEquals("5x^2-1x^1+8", actualResult.toString());
 
     // Check if the original polynomials are not modified.
-    assertEquals("3x^2-2x^1+5", simplePolynomialUnderTest.toString());
+    assertEquals("3x^2-2x^1+5", polynomialUnderTest.toString());
     assertEquals("2x^2+1x^1+3", anotherPolynomialToAdd.toString());
 
-    assertNotEquals(simplePolynomialUnderTest, actualResult);
+    assertNotEquals(polynomialUnderTest, actualResult);
     assertNotEquals(anotherPolynomialToAdd, actualResult);
   }
 
@@ -59,15 +62,15 @@ public class TestSimplePolynomialAddMethod {
    */
   @Test
   public void testAdditionWithSameDegreeWithFewCoefficientsMissingInOnePolynomial() {
-    simplePolynomialUnderTest.addTerm(3, 2);
-    simplePolynomialUnderTest.addTerm(-2, 1);
-    simplePolynomialUnderTest.addTerm(5, 0);
+    polynomialUnderTest.addTerm(3, 2);
+    polynomialUnderTest.addTerm(-2, 1);
+    polynomialUnderTest.addTerm(5, 0);
 
     Polynomial anotherPolynomialToAdd = new SimplePolynomial();
     anotherPolynomialToAdd.addTerm(2, 2);
     anotherPolynomialToAdd.addTerm(3, 0);
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
 
     Polynomial expectedResult = new SimplePolynomial();
     expectedResult.addTerm(5, 2);
@@ -77,9 +80,9 @@ public class TestSimplePolynomialAddMethod {
     assertEquals("5x^2-2x^1+8", actualResult.toString());
 
     // Check if the original polynomials are not modified.
-    assertEquals("3x^2-2x^1+5", simplePolynomialUnderTest.toString());
+    assertEquals("3x^2-2x^1+5", polynomialUnderTest.toString());
     assertEquals("2x^2+3", anotherPolynomialToAdd.toString());
-    assertNotEquals(simplePolynomialUnderTest, actualResult);
+    assertNotEquals(polynomialUnderTest, actualResult);
     assertNotEquals(anotherPolynomialToAdd, actualResult);
   }
 
@@ -91,7 +94,7 @@ public class TestSimplePolynomialAddMethod {
 
     Polynomial anotherPolynomialToAdd = new SimplePolynomial();
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
 
     Polynomial expectedResult = new SimplePolynomial();
     assertEquals(expectedResult, actualResult);
@@ -104,11 +107,11 @@ public class TestSimplePolynomialAddMethod {
   @Test
   public void testAdditionWithZeroPolynomials() {
 
-    simplePolynomialUnderTest.addTerm(2, 2);
-    simplePolynomialUnderTest.addTerm(-1, 0);
+    polynomialUnderTest.addTerm(2, 2);
+    polynomialUnderTest.addTerm(-1, 0);
     Polynomial anotherPolynomialToAdd = new SimplePolynomial();
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
 
     Polynomial expectedResult = new SimplePolynomial();
     expectedResult.addTerm(2, 2);
@@ -117,7 +120,7 @@ public class TestSimplePolynomialAddMethod {
     assertEquals("2x^2-1", actualResult.toString());
 
     // Check if the original polynomials are not modified.
-    assertEquals("2x^2-1", simplePolynomialUnderTest.toString());
+    assertEquals("2x^2-1", polynomialUnderTest.toString());
     assertEquals("0", anotherPolynomialToAdd.toString());
   }
 
@@ -131,7 +134,7 @@ public class TestSimplePolynomialAddMethod {
     anotherPolynomialToAdd.addTerm(2, 2);
     anotherPolynomialToAdd.addTerm(-1, 0);
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
 
     Polynomial expectedResult = new SimplePolynomial();
     expectedResult.addTerm(2, 2);
@@ -140,7 +143,7 @@ public class TestSimplePolynomialAddMethod {
     assertEquals("2x^2-1", actualResult.toString());
 
     // Check if the original polynomials are not modified.
-    assertEquals("0", simplePolynomialUnderTest.toString());
+    assertEquals("0", polynomialUnderTest.toString());
     assertEquals("2x^2-1", anotherPolynomialToAdd.toString());
   }
 
@@ -149,16 +152,16 @@ public class TestSimplePolynomialAddMethod {
    */
   @Test
   public void testAdditionWithDifferentDegree() {
-    simplePolynomialUnderTest.addTerm(3, 2);
-    simplePolynomialUnderTest.addTerm(-2, 1);
-    simplePolynomialUnderTest.addTerm(5, 0);
+    polynomialUnderTest.addTerm(3, 2);
+    polynomialUnderTest.addTerm(-2, 1);
+    polynomialUnderTest.addTerm(5, 0);
 
     Polynomial anotherPolynomialToAdd = new SimplePolynomial();
     anotherPolynomialToAdd.addTerm(2, 5);
     anotherPolynomialToAdd.addTerm(2, 2);
     anotherPolynomialToAdd.addTerm(3, 0);
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
 
     Polynomial expectedResult = new SimplePolynomial();
     expectedResult.addTerm(2, 5);
@@ -169,10 +172,10 @@ public class TestSimplePolynomialAddMethod {
     assertEquals("2x^5+5x^2-2x^1+8", actualResult.toString());
 
     // Check if the original polynomials are not modified.
-    assertEquals("3x^2-2x^1+5", simplePolynomialUnderTest.toString());
+    assertEquals("3x^2-2x^1+5", polynomialUnderTest.toString());
     assertEquals("2x^5+2x^2+3", anotherPolynomialToAdd.toString());
 
-    assertNotEquals(simplePolynomialUnderTest, actualResult);
+    assertNotEquals(polynomialUnderTest, actualResult);
     assertNotEquals(anotherPolynomialToAdd, actualResult);
   }
 
@@ -182,16 +185,16 @@ public class TestSimplePolynomialAddMethod {
    */
   @Test
   public void testAdditionWithAdditionOfAllPositiveCoefficients() {
-    simplePolynomialUnderTest.addTerm(3, 2);
-    simplePolynomialUnderTest.addTerm(2, 1);
-    simplePolynomialUnderTest.addTerm(5, 0);
+    polynomialUnderTest.addTerm(3, 2);
+    polynomialUnderTest.addTerm(2, 1);
+    polynomialUnderTest.addTerm(5, 0);
 
     Polynomial anotherPolynomialToAdd = new SimplePolynomial();
     anotherPolynomialToAdd.addTerm(2, 2);
     anotherPolynomialToAdd.addTerm(2, 1);
     anotherPolynomialToAdd.addTerm(3, 0);
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
 
     Polynomial expectedResult = new SimplePolynomial();
     expectedResult.addTerm(5, 2);
@@ -201,10 +204,10 @@ public class TestSimplePolynomialAddMethod {
     assertEquals("5x^2+4x^1+8", actualResult.toString());
 
     // Check if the original polynomials are not modified.
-    assertEquals("3x^2+2x^1+5", simplePolynomialUnderTest.toString());
+    assertEquals("3x^2+2x^1+5", polynomialUnderTest.toString());
     assertEquals("2x^2+2x^1+3", anotherPolynomialToAdd.toString());
 
-    assertNotEquals(simplePolynomialUnderTest, actualResult);
+    assertNotEquals(polynomialUnderTest, actualResult);
     assertNotEquals(anotherPolynomialToAdd, actualResult);
   }
 
@@ -213,16 +216,16 @@ public class TestSimplePolynomialAddMethod {
    */
   @Test
   public void testAdditionWithAdditionOfAllNegativeCoefficients() {
-    simplePolynomialUnderTest.addTerm(-3, 2);
-    simplePolynomialUnderTest.addTerm(-2, 1);
-    simplePolynomialUnderTest.addTerm(-5, 0);
+    polynomialUnderTest.addTerm(-3, 2);
+    polynomialUnderTest.addTerm(-2, 1);
+    polynomialUnderTest.addTerm(-5, 0);
 
     Polynomial anotherPolynomialToAdd = new SimplePolynomial();
     anotherPolynomialToAdd.addTerm(-2, 2);
     anotherPolynomialToAdd.addTerm(-2, 1);
     anotherPolynomialToAdd.addTerm(-3, 0);
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
 
     Polynomial expectedResult = new SimplePolynomial();
     expectedResult.addTerm(-5, 2);
@@ -232,10 +235,10 @@ public class TestSimplePolynomialAddMethod {
     assertEquals("-5x^2-4x^1-8", actualResult.toString());
 
     // Check if the original polynomials are not modified.
-    assertEquals("-3x^2-2x^1-5", simplePolynomialUnderTest.toString());
+    assertEquals("-3x^2-2x^1-5", polynomialUnderTest.toString());
     assertEquals("-2x^2-2x^1-3", anotherPolynomialToAdd.toString());
 
-    assertNotEquals(simplePolynomialUnderTest, actualResult);
+    assertNotEquals(polynomialUnderTest, actualResult);
     assertNotEquals(anotherPolynomialToAdd, actualResult);
   }
 
@@ -246,26 +249,26 @@ public class TestSimplePolynomialAddMethod {
   @Test
   public void testAddingTwoPolynomialGivingOutputAsZeroPolynomial() {
 
-    simplePolynomialUnderTest.addTerm(3, 2);
-    simplePolynomialUnderTest.addTerm(1, 0);
+    polynomialUnderTest.addTerm(3, 2);
+    polynomialUnderTest.addTerm(1, 0);
 
     Polynomial anotherPolynomialToAdd = new SimplePolynomial();
     anotherPolynomialToAdd.addTerm(-3, 2);
     anotherPolynomialToAdd.addTerm(-1, 0);
 
-    Polynomial actualResult = simplePolynomialUnderTest.add(anotherPolynomialToAdd);
+    Polynomial actualResult = polynomialUnderTest.add(anotherPolynomialToAdd);
     Polynomial expectedResult = new SimplePolynomial();
 
     assertEquals(expectedResult, actualResult);
     assertEquals("0", actualResult.toString());
 
     // Check if the original polynomials are not modified.
-    assertNotEquals(simplePolynomialUnderTest, actualResult);
+    assertNotEquals(polynomialUnderTest, actualResult);
     assertNotEquals(anotherPolynomialToAdd, actualResult);
 
 
     // Check if adding it the other way also gives empty result.
-    assertEquals(expectedResult, anotherPolynomialToAdd.add(simplePolynomialUnderTest));
+    assertEquals(expectedResult, anotherPolynomialToAdd.add(polynomialUnderTest));
     assertEquals("0", actualResult.toString());
   }
 

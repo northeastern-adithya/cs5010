@@ -16,16 +16,16 @@ import static org.junit.Assert.assertNotEquals;
 public class TestSimplePolynomialEqualsAndHashcodeMethod {
 
   /**
-   * The polynomial under test.
+   * The polynomial object to be tested.
    */
-  private Polynomial simplePolynomialUnderTest;
+  private Polynomial polynomialUnderTest;
 
   /**
-   * Set up the polynomial under test with the initial object.
+   * Set up the polynomial under test with no elements.
    */
   @Before
   public void setUp() {
-    simplePolynomialUnderTest = new SimplePolynomial();
+    polynomialUnderTest = new SimplePolynomial();
   }
 
 
@@ -35,8 +35,8 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
   @Test
   public void testEqualsAndHashCodeWithNoElements() {
     Polynomial expectedPolynomial = new SimplePolynomial();
-    assertEquals(expectedPolynomial, simplePolynomialUnderTest);
-    assertEquals(expectedPolynomial.hashCode(), simplePolynomialUnderTest.hashCode());
+    assertEquals(expectedPolynomial, polynomialUnderTest);
+    assertEquals(expectedPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
 
   /**
@@ -44,12 +44,12 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeMethodWithDifferentClasses() {
-    simplePolynomialUnderTest.addTerm(2, 3);
-    simplePolynomialUnderTest.addTerm(2, 3);
+    polynomialUnderTest.addTerm(2, 3);
+    polynomialUnderTest.addTerm(2, 3);
 
     Integer integerValue = 3;
-    assertNotEquals(integerValue, simplePolynomialUnderTest);
-    assertNotEquals(integerValue.hashCode(), simplePolynomialUnderTest.hashCode());
+    assertNotEquals(integerValue, polynomialUnderTest);
+    assertNotEquals(integerValue.hashCode(), polynomialUnderTest.hashCode());
   }
 
 
@@ -59,17 +59,17 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeMethodWithPositiveStartingTerm() {
-    simplePolynomialUnderTest.addTerm(2, 3);
-    simplePolynomialUnderTest.addTerm(-2, 1);
-    simplePolynomialUnderTest.addTerm(2, 0);
+    polynomialUnderTest.addTerm(2, 3);
+    polynomialUnderTest.addTerm(-2, 1);
+    polynomialUnderTest.addTerm(2, 0);
 
     Polynomial expectedPolynomial = new SimplePolynomial();
     expectedPolynomial.addTerm(2, 3);
     expectedPolynomial.addTerm(-2, 1);
     expectedPolynomial.addTerm(2, 0);
 
-    assertEquals(expectedPolynomial, simplePolynomialUnderTest);
-    assertEquals(expectedPolynomial.hashCode(), simplePolynomialUnderTest.hashCode());
+    assertEquals(expectedPolynomial, polynomialUnderTest);
+    assertEquals(expectedPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
 
   /**
@@ -78,16 +78,16 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsMethodWithNegativeStartingTerm() {
-    simplePolynomialUnderTest.addTerm(-2, 3);
-    simplePolynomialUnderTest.addTerm(2, 1);
-    simplePolynomialUnderTest.addTerm(2, 0);
+    polynomialUnderTest.addTerm(-2, 3);
+    polynomialUnderTest.addTerm(2, 1);
+    polynomialUnderTest.addTerm(2, 0);
 
     Polynomial expectedPolynomial = new SimplePolynomial();
     expectedPolynomial.addTerm(-2, 3);
     expectedPolynomial.addTerm(2, 1);
     expectedPolynomial.addTerm(2, 0);
-    assertEquals(expectedPolynomial, simplePolynomialUnderTest);
-    assertEquals(expectedPolynomial.hashCode(), simplePolynomialUnderTest.hashCode());
+    assertEquals(expectedPolynomial, polynomialUnderTest);
+    assertEquals(expectedPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
 
   /**
@@ -96,13 +96,13 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeWithDifferentElementsStartingWithPositiveTerm() {
-    simplePolynomialUnderTest.addTerm(2, 3);
-    simplePolynomialUnderTest.addTerm(-2, 1);
+    polynomialUnderTest.addTerm(2, 3);
+    polynomialUnderTest.addTerm(-2, 1);
 
     Polynomial differentPolynomial = new SimplePolynomial();
     differentPolynomial.addTerm(2, 3);
-    assertNotEquals(differentPolynomial, simplePolynomialUnderTest);
-    assertNotEquals(differentPolynomial.hashCode(), simplePolynomialUnderTest.hashCode());
+    assertNotEquals(differentPolynomial, polynomialUnderTest);
+    assertNotEquals(differentPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
 
   /**
@@ -111,12 +111,12 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeWithNonZeroAndZeroElements() {
-    simplePolynomialUnderTest.addTerm(-2, 3);
-    simplePolynomialUnderTest.addTerm(-2, 1);
+    polynomialUnderTest.addTerm(-2, 3);
+    polynomialUnderTest.addTerm(-2, 1);
 
     Polynomial differentPolynomial = new SimplePolynomial();
-    assertNotEquals(differentPolynomial, simplePolynomialUnderTest);
-    assertNotEquals(differentPolynomial.hashCode(), simplePolynomialUnderTest.hashCode());
+    assertNotEquals(differentPolynomial, polynomialUnderTest);
+    assertNotEquals(differentPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
 
   /**
@@ -125,12 +125,12 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeWithDifferentElementsStartingWithNegativeTerm() {
-    simplePolynomialUnderTest.addTerm(-2, 3);
-    simplePolynomialUnderTest.addTerm(2, 1);
+    polynomialUnderTest.addTerm(-2, 3);
+    polynomialUnderTest.addTerm(2, 1);
 
     Polynomial differentPolynomial = new SimplePolynomial();
     differentPolynomial.addTerm(-2, 3);
-    assertNotEquals(differentPolynomial, simplePolynomialUnderTest);
+    assertNotEquals(differentPolynomial, polynomialUnderTest);
   }
 
 
@@ -139,15 +139,15 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeOfSimplePolynomialWithArrayHavingSameElements() {
-    simplePolynomialUnderTest.addTerm(3, 0);
-    simplePolynomialUnderTest.addTerm(2, 1);
+    polynomialUnderTest.addTerm(3, 0);
+    polynomialUnderTest.addTerm(2, 1);
 
     List<Integer> coefficients = new ArrayList<>();
     coefficients.add(3);
     coefficients.add(2);
 
-    assertNotEquals(coefficients, simplePolynomialUnderTest);
-    assertNotEquals(coefficients.hashCode(), simplePolynomialUnderTest.hashCode());
+    assertNotEquals(coefficients, polynomialUnderTest);
+    assertNotEquals(coefficients.hashCode(), polynomialUnderTest.hashCode());
   }
 
   /**
@@ -156,11 +156,11 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testZeroPolynomialIsEqualToPolynomialWithNoElements() {
-    simplePolynomialUnderTest.addTerm(0, 0);
-    simplePolynomialUnderTest.addTerm(0, 3);
+    polynomialUnderTest.addTerm(0, 0);
+    polynomialUnderTest.addTerm(0, 3);
     Polynomial zeroPolynomial = new SimplePolynomial();
-    assertEquals(zeroPolynomial, simplePolynomialUnderTest);
-    assertEquals(zeroPolynomial.hashCode(), simplePolynomialUnderTest.hashCode());
+    assertEquals(zeroPolynomial, polynomialUnderTest);
+    assertEquals(zeroPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
 
 
