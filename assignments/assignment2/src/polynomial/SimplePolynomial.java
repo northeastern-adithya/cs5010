@@ -2,6 +2,7 @@ package polynomial;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class implements the Polynomial interface providing implementation
@@ -46,6 +47,10 @@ public class SimplePolynomial implements Polynomial {
   public Polynomial add(Polynomial other) {
     Polynomial resultAfterAdding = new SimplePolynomial();
     int maxDegree = Math.max(this.getDegree(), other.getDegree());
+
+    if (maxDegree == 0) {
+      return resultAfterAdding;
+    }
 
     // Add the coefficients of the same power terms from both polynomials.
     for (int power = 0; power <= maxDegree; power++) {
@@ -111,7 +116,7 @@ public class SimplePolynomial implements Polynomial {
   public int getCoefficient(int power) {
 
     // If power is out of bounds, returns 0.
-    if (power < 0 || power > this.getDegree()) {
+    if (power < 0 || power > this.getDegree() || isPolynomialEmpty()) {
       return 0;
     }
     return polynomialCoefficients.get(power);
@@ -138,13 +143,14 @@ public class SimplePolynomial implements Polynomial {
   }
 
   /**
-   * Generates a hash code using coefficients of the simple polynomial.
+   * Generates a hash code using coefficients,toString and the class type of the simple polynomial.
+   * Uses toString to include the powers along with the coefficients.
    *
    * @return the hash code for the simple polynomial
    */
   @Override
   public int hashCode() {
-    return polynomialCoefficients.hashCode();
+    return Objects.hash(polynomialCoefficients, this.toString(), this.getClass());
   }
 
   @Override
