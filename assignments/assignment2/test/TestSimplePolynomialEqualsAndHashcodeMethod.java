@@ -150,5 +150,18 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
     assertNotEquals(coefficients.hashCode(), simplePolynomialUnderTest.hashCode());
   }
 
+  /**
+   * Test the equals and hashcode method of zero polynomial and polynomial
+   * with no elements are equal.
+   */
+  @Test
+  public void testZeroPolynomialIsEqualToPolynomialWithNoElements() {
+    simplePolynomialUnderTest.addTerm(0, 0);
+    simplePolynomialUnderTest.addTerm(0, 3);
+    Polynomial zeroPolynomial = new SimplePolynomial();
+    assertEquals(zeroPolynomial, simplePolynomialUnderTest);
+    assertEquals(zeroPolynomial.hashCode(), simplePolynomialUnderTest.hashCode());
+  }
+
 
 }

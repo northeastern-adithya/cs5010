@@ -257,6 +257,7 @@ public class TestSimplePolynomialAddMethod {
     Polynomial expectedResult = new SimplePolynomial();
 
     assertEquals(expectedResult, actualResult);
+    assertEquals("0", actualResult.toString());
 
     // Check if the original polynomials are not modified.
     assertNotEquals(simplePolynomialUnderTest, actualResult);
@@ -264,8 +265,8 @@ public class TestSimplePolynomialAddMethod {
 
 
     // Check if adding it the other way also gives empty result.
-
     assertEquals(expectedResult, anotherPolynomialToAdd.add(simplePolynomialUnderTest));
+    assertEquals("0", actualResult.toString());
   }
 
 
@@ -301,6 +302,7 @@ public class TestSimplePolynomialAddMethod {
     expectedResult.addTerm(5, 2);
     expectedResult.addTerm(8, 0);
     assertEquals(expectedResult, actualResult);
+    assertEquals("-2x^3+5x^2+8", actualResult.toString());
 
   }
 
@@ -334,6 +336,9 @@ public class TestSimplePolynomialAddMethod {
             .add(firstPolynomialToAdd).add(fourthPolynomialToAdd);
 
     assertEquals(firstResult, secondResult);
+
+    assertEquals("-2x^3+5x^2+8", firstResult.toString());
+    assertEquals("-2x^3+5x^2+8", firstResult.toString());
 
   }
 
