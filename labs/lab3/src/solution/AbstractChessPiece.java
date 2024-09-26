@@ -1,9 +1,32 @@
+package solution;
+
+/**
+ * Abstract class for implementing chess piece.
+ */
 public abstract class AbstractChessPiece implements ChessPiece {
 
+  /**
+   * The row of the piece.
+   */
   protected int row;
+  /**
+   * The column of the piece.
+   */
   protected int col;
+
+  /**
+   * The color of the piece.
+   */
   protected Color color;
 
+  /**
+   * Constructor for the abstract chess piece.
+   *
+   * @param row   the row of the piece
+   * @param col   the column of the piece
+   * @param color the color of the piece
+   * @throws IllegalArgumentException if row or col is negative.
+   */
   protected AbstractChessPiece(int row, int col, Color color) throws IllegalArgumentException {
     if ((row < 0) || (col < 0)) {
       throw new IllegalArgumentException("Illegal position");
@@ -39,5 +62,13 @@ public abstract class AbstractChessPiece implements ChessPiece {
     return (this.getColor() != piece.getColor()) && canMove(
             piece.getRow(),
             piece.getColumn());
+  }
+
+  protected boolean canMoveDiagonally(int row, int col) {
+    return (Math.abs(this.row - row) == Math.abs(this.col - col));
+  }
+
+  protected boolean canMoveHorizontallyOrVertically(int row, int col) {
+    return ((this.row == row) || (this.col == col));
   }
 }

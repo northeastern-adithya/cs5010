@@ -1,3 +1,9 @@
+package solution;
+
+/**
+ * Interface of a chess piece to check if it can be moved or
+ * can kill another piece.
+ */
 public interface ChessPiece {
   /**
    * Can this chess piece be moved from its current location to the location
