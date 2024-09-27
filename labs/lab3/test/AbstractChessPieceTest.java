@@ -1,13 +1,14 @@
-package solution;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import solution.ChessPiece;
+import solution.Color;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
- * Abstract class to test all the common methods of the ChessPiece class.
+ * Abstract class to test all the common methods of the ChessPiece.
  */
 public abstract class AbstractChessPieceTest {
 
@@ -37,11 +38,17 @@ public abstract class AbstractChessPieceTest {
           continue;
         }
 
-        assertEquals("Piece at :" + piece.getRow() + "," + piece.getColumn() +
-                        ", Unexpected canMove result "
+        assertEquals("Piece at :"
+                        + piece.getRow()
+                        + ","
+                        + piece.getColumn()
+                        + ", Unexpected canMove result "
                         + "for "
-                        + "i=" + i + " j=" +
-                        j + "",
+                        + "i="
+                        + i
+                        + " j="
+                        + j
+                        + "",
                 results[i][j], piece.canMove(i, j));
 
       }
@@ -58,16 +65,21 @@ public abstract class AbstractChessPieceTest {
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
 
-        if ((i == piece.getRow()) && (j == piece.getColumn()))
+        if ((i == piece.getRow()) && (j == piece.getColumn())) {
           continue;
+        }
+
         ChessPiece another = createChessPiece(i, j,
                 Color.values()[(piece.getColor().ordinal() + 1)
                         % Color.values().length]);
 
 
         assertEquals("Unexpected canKill result for "
-                        + "i=" + i + " j=" +
-                        j + "",
+                        + "i="
+                        + i
+                        + " j="
+                        + j
+                        + "",
                 results[i][j], piece.canKill(another));
 
       }

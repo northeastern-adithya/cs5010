@@ -64,10 +64,24 @@ public abstract class AbstractChessPiece implements ChessPiece {
             piece.getColumn());
   }
 
+  /**
+   * Check if the piece can move diagonally.
+   *
+   * @param row the row to which the piece can move
+   * @param col the column to which the piece can move
+   * @return true if the piece can move diagonally, false otherwise
+   */
   protected boolean canMoveDiagonally(int row, int col) {
     return (Math.abs(this.row - row) == Math.abs(this.col - col));
   }
 
+  /**
+   * Check if the piece can move horizontally or vertically.
+   *
+   * @param row the row to which the piece can move
+   * @param col the column to which the piece can move
+   * @return true if the piece can move horizontally or vertically, false otherwise
+   */
   protected boolean canMoveHorizontallyOrVertically(int row, int col) {
     return ((this.row == row) || (this.col == col));
   }

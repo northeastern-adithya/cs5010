@@ -6,8 +6,8 @@ package solution;
  */
 public interface ChessPiece {
   /**
-   * Can this chess piece be moved from its current location to the location
-   * (row,col).
+   * Can this chess piece be moved from its current location
+   * to the location (row,col).
    *
    * @param row the row to which this chess piece can be moved
    * @param col the col to which this chess piece can be moved
