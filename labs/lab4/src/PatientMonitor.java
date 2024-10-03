@@ -48,7 +48,7 @@ public class PatientMonitor implements Monitor {
     }
     int count = 0;
     for (int emergencyCount : patientToEmergencyCount.values()) {
-      if (emergencyCount > 1) {
+      if (emergencyCount >= 1) {
         count += 1;
       }
     }
