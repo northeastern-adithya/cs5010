@@ -1,4 +1,4 @@
-package polynomial;
+package polynomial2;
 
 /**
  * This interface represents all the operations offered by a polynomial. A

@@ -1,8 +1,7 @@
+package polynomial2;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import polynomial.Polynomial;
-import polynomial.SimplePolynomial;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

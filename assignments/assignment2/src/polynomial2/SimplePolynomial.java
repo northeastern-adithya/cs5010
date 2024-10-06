@@ -1,4 +1,4 @@
-package polynomial;
+package polynomial2;
 
 import java.util.ArrayList;
 import java.util.List;
