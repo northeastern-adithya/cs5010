@@ -22,6 +22,18 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
     return null;
   }
 
+  @Override
+  public Polynomial derivative() {
+    Polynomial resultAfterDerivative = new SparsePolynomial();
+    polynomialElements.forEach(
+            element -> {
+              int derivativeCoefficient = findDerivativeCoefficient(element.getCoefficient(), element.getPower());
+              resultAfterDerivative.addTerm(derivativeCoefficient, element.getPower() - 1);
+            }
+    );
+    return resultAfterDerivative;
+  }
+
 
   @Override
   protected void addCoefficientToAppropriateIndex(int coefficient, int power) {
@@ -47,28 +59,27 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
   }
 
   @Override
-  public int getDegree() {
-    if (isPolynomialEmpty()) {
-      return 0;
-    }
-    Optional<Integer> maxPower = polynomialElements.stream()
-            .map(PolynomialContainer::getPower)
-            .max(Integer::compareTo);
+  public int getMaxPower() {
+    return polynomialElements.get(
+            polynomialElements.size() - 1
+    ).getPower();
+  }
 
-    return maxPower.orElse(0);
+  @Override
+  public double evaluate(double x) {
+    return polynomialElements.stream()
+            .mapToDouble(element
+                    -> evaluateValue(element.getCoefficient(), element.getPower(), x))
+            .sum();
   }
 
 
   @Override
-  public int getCoefficient(int power) {
-    if (isInvalidPower(power)) {
-      return 0;
-    }
-    Optional<Integer> coefficient = polynomialElements.stream()
+  public int findCoefficient(int power) {
+    Optional<Integer> optionalCoefficient = polynomialElements.stream()
             .filter(polynomialContainer -> polynomialContainer.getPower() == power)
             .map(PolynomialContainer::getCoefficient)
             .findFirst();
-
-    return coefficient.orElse(0);
+    return optionalCoefficient.orElse(0);
   }
 }

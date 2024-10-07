@@ -6,6 +6,7 @@ package polynomial;
  * weighted sum of terms (the weights, called coefficients are whole numbers).
  */
 
+// TODO: equals, hashCode, multiply,add
 public interface Polynomial {
   /**
    * Add this polynomial with another and return the result as another

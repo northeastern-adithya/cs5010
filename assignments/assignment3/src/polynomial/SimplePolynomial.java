@@ -3,17 +3,10 @@ package polynomial;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * This class implements the Polynomial interface providing implementation
- * to add, multiply, and differentiate polynomials.
- * Is a simple polynomial with single variable and integer coefficients.
- */
+
 public class SimplePolynomial extends AbstractPolynomial<Integer> {
 
 
-  /**
-   * Constructs a SimplePolynomial object with an empty array list.
-   */
   public SimplePolynomial() {
     super(new ArrayList<>());
   }
@@ -28,7 +21,7 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
       return resultAfterAdding;
     }
 
-    // Add the coefficients of the same power terms from both polynomials.
+
     for (int power = 0; power <= maxDegree; power++) {
       int sum = this.getCoefficient(power) + other.getCoefficient(power);
       resultAfterAdding.addTerm(sum, power);
@@ -40,7 +33,7 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
   public Polynomial multiply(Polynomial other) {
     Polynomial resultAfterMultiplying = new SimplePolynomial();
 
-    // Multiply the coefficients of the terms from both polynomials.
+
     for (int i = 0; i <= this.getDegree(); i++) {
       for (int j = 0; j <= other.getDegree(); j++) {
         int product = this.getCoefficient(i) * other.getCoefficient(j);
@@ -51,22 +44,31 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
   }
 
   @Override
-  public int getDegree() {
-    // Returns 0 if the polynomial is empty.
-    if (isPolynomialEmpty()) {
-      return 0;
+  public Polynomial derivative() {
+    Polynomial resultAfterDerivative = new SimplePolynomial();
+    for (int power = 1; power <= this.getDegree(); power++) {
+      int derivativeCoefficient = findDerivativeCoefficient(this.getCoefficient(power), power);
+      resultAfterDerivative.addTerm(derivativeCoefficient, power - 1);
     }
+    return resultAfterDerivative;
+  }
+
+  @Override
+  public int getMaxPower() {
     return polynomialElements.size() - 1;
   }
 
+  @Override
+  public double evaluate(double x) {
+    double evaluatedValue = 0;
+    for (int power = 0; power <= this.getDegree(); power++) {
+      evaluatedValue += evaluateValue(this.getCoefficient(power), power, x);
+    }
+    return evaluatedValue;
+  }
 
   @Override
-  public int getCoefficient(int power) {
-
-    // If power is out of bounds, returns 0.
-    if (isInvalidPower(power)) {
-      return 0;
-    }
+  public int findCoefficient(int power) {
     return polynomialElements.get(power);
   }
 
@@ -75,13 +77,12 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     if (power < polynomialElements.size()) {
       polynomialElements.set(power, this.getCoefficient(power) + coefficient);
     } else {
-      // Defaults to add 0 as coefficients for missing powers.
+
       for (int i = polynomialElements.size(); i < power; i++) {
         polynomialElements.add(0);
       }
       polynomialElements.add(coefficient);
     }
-    // Cleaning up trailing zeroes is necessary to ensure that maximum degree is the last element.
     cleanUpTrailingZeros();
   }
 
@@ -91,11 +92,6 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
   }
 
 
-  /**
-   * Removes trailing zeros from the polynomial by checking
-   * the coefficients from the highest power to the lowest until a non-zero
-   * coefficient is encountered.
-   */
   private void cleanUpTrailingZeros() {
     int power = this.getDegree();
     while (!isPolynomialEmpty() && power >= 0 && this.getCoefficient(power) == 0) {
