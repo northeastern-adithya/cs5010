@@ -1,6 +1,7 @@
 package polynomial;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class provides an abstract implementation of the Polynomial interface.
@@ -37,6 +38,19 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
    */
   protected AbstractPolynomial(List<T> polynomialElements) {
     this.polynomialElements = polynomialElements;
+  }
+
+
+  @Override
+  public Polynomial derivative() {
+    Polynomial resultAfterDerivative = createNewInstance();
+
+    // Ignoring the first derivative since derivative of a constant is 0.
+    for (int power = 1; power <= this.getDegree(); power++) {
+      int derivativeCoefficient = this.getCoefficient(power) * power;
+      resultAfterDerivative.addTerm(derivativeCoefficient, power - 1);
+    }
+    return resultAfterDerivative;
   }
 
   @Override
@@ -89,6 +103,37 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
     return polynomialAsString.toString();
   }
 
+  /**
+   * Compares simple polynomial with another object to verify if they are equal or not.
+   * If the object is not an instance of SimplePolynomial then returns false.
+   * Additional checks are performed to ensure polynomial coefficients are equal.
+   *
+   * @param obj the object to compare with
+   * @return true if the objects are equal, false otherwise
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof AbstractPolynomial)) {
+      return false;
+    }
+    AbstractPolynomial that = (AbstractPolynomial) obj;
+    return this.toString().equals(that.toString());
+  }
+
+  /**
+   * Generates a hash code using coefficients,toString and the class type of the simple polynomial.
+   * Uses toString to include the powers along with the coefficients.
+   *
+   * @return the hash code for the simple polynomial
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.toString());
+  }
+
 
   /**
    * Adds the coefficient to the appropriate index in the polynomial.
@@ -99,6 +144,9 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
    * @throws IllegalArgumentException if power fails validation
    */
   protected abstract void addCoefficientToAppropriateIndex(int coefficient, int power);
+
+
+  protected abstract AbstractPolynomial<T> createNewInstance();
 
   /**
    * Checks if the polynomial is empty.

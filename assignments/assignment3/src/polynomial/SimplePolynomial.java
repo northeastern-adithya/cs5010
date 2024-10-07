@@ -51,18 +51,6 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
   }
 
   @Override
-  public Polynomial derivative() {
-    Polynomial resultAfterDerivative = new SimplePolynomial();
-
-    // Ignoring the first derivative since derivative of a constant is 0.
-    for (int power = 1; power <= this.getDegree(); power++) {
-      int derivativeCoefficient = this.getCoefficient(power) * power;
-      resultAfterDerivative.addTerm(derivativeCoefficient, power - 1);
-    }
-    return resultAfterDerivative;
-  }
-
-  @Override
   public int getDegree() {
     // Returns 0 if the polynomial is empty.
     if (isPolynomialEmpty()) {
@@ -82,37 +70,6 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     return polynomialElements.get(power);
   }
 
-  /**
-   * Compares simple polynomial with another object to verify if they are equal or not.
-   * If the object is not an instance of SimplePolynomial then returns false.
-   * Additional checks are performed to ensure polynomial coefficients are equal.
-   *
-   * @param obj the object to compare with
-   * @return true if the objects are equal, false otherwise
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!(obj instanceof SimplePolynomial)) {
-      return false;
-    }
-    SimplePolynomial that = (SimplePolynomial) obj;
-    return polynomialElements.equals(that.polynomialElements);
-  }
-
-  /**
-   * Generates a hash code using coefficients,toString and the class type of the simple polynomial.
-   * Uses toString to include the powers along with the coefficients.
-   *
-   * @return the hash code for the simple polynomial
-   */
-  @Override
-  public int hashCode() {
-    return Objects.hash(polynomialElements, this.toString(), this.getClass());
-  }
-
   protected void addCoefficientToAppropriateIndex(int coefficient, int power) {
 
     if (power < polynomialElements.size()) {
@@ -126,6 +83,11 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     }
     // Cleaning up trailing zeroes is necessary to ensure that maximum degree is the last element.
     cleanUpTrailingZeros();
+  }
+
+  @Override
+  protected AbstractPolynomial<Integer> createNewInstance() {
+    return new SimplePolynomial();
   }
 
 

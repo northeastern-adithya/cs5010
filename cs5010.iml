@@ -18,6 +18,8 @@
       <sourceFolder url="file://$MODULE_DIR$/labs/lab4/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/assignments/assignment3/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assignments/assignment3/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/syllabus/code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/syllabus/test" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

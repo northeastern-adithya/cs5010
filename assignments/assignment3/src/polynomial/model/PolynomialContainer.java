@@ -1,5 +1,7 @@
 package polynomial.model;
 
+import java.util.Objects;
+
 /**
  * Class to represent the power and coefficient for the polynomial.
  */
@@ -43,6 +45,25 @@ public class PolynomialContainer {
    */
   public int getCoefficient() {
     return this.coefficient;
+  }
+
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof PolynomialContainer)) {
+      return false;
+    }
+
+    PolynomialContainer that = (PolynomialContainer) obj;
+    return this.power == that.power && this.coefficient == that.coefficient;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.coefficient, this.power);
   }
 
 

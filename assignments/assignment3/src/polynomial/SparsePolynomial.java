@@ -7,7 +7,7 @@ import polynomial.model.PolynomialContainer;
 
 public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
 
-  protected SparsePolynomial() {
+  public SparsePolynomial() {
     super(new LinkedList<>());
   }
 
@@ -22,10 +22,6 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
     return null;
   }
 
-  @Override
-  public Polynomial derivative() {
-    return null;
-  }
 
   @Override
   protected void addCoefficientToAppropriateIndex(int coefficient, int power) {
@@ -43,6 +39,11 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
     } else {
       polynomialElements.add(new PolynomialContainer(power, coefficient));
     }
+  }
+
+  @Override
+  protected AbstractPolynomial<PolynomialContainer> createNewInstance() {
+    return new SparsePolynomial();
   }
 
   @Override
