@@ -5,43 +5,43 @@ import java.util.ArrayList;
 
 public class SimplePolynomial extends AbstractPolynomial<Integer> {
 
-
   public SimplePolynomial() {
     super(new ArrayList<>());
   }
 
 
   @Override
+  protected void addCoefficientToAppropriateIndex(int coefficient, int power) {
+    if (power < polynomialElements.size()) {
+      polynomialElements.set(power, this.getCoefficient(power) + coefficient);
+    } else {
+      for (int i = polynomialElements.size(); i < power; i++) {
+        polynomialElements.add(0);
+      }
+      polynomialElements.add(coefficient);
+    }
+    cleanUpTrailingZeros();
+  }
+
+  @Override
+  public int getMaxPower() {
+    return polynomialElements.size() - 1;
+  }
+
+  @Override
+  public int findCoefficient(int power) {
+    return polynomialElements.get(power);
+  }
+
+  @Override
   public Polynomial add(Polynomial other) {
-    Polynomial resultAfterAdding = new SimplePolynomial();
-    int maxDegree = Math.max(this.getDegree(), other.getDegree());
-
-    if (maxDegree == 0) {
-      return resultAfterAdding;
-    }
-
-
-    for (int power = 0; power <= maxDegree; power++) {
-      int sum = this.getCoefficient(power) + other.getCoefficient(power);
-      resultAfterAdding.addTerm(sum, power);
-    }
-    return resultAfterAdding;
+    return null;
   }
 
   @Override
   public Polynomial multiply(Polynomial other) {
-    Polynomial resultAfterMultiplying = new SimplePolynomial();
-
-
-    for (int i = 0; i <= this.getDegree(); i++) {
-      for (int j = 0; j <= other.getDegree(); j++) {
-        int product = this.getCoefficient(i) * other.getCoefficient(j);
-        resultAfterMultiplying.addTerm(product, i + j);
-      }
-    }
-    return resultAfterMultiplying;
+    return null;
   }
-
 
   @Override
   public Polynomial derivative() {
@@ -53,13 +53,6 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     return resultAfterDerivative;
   }
 
-
-  @Override
-  public int getMaxPower() {
-    return polynomialElements.size() - 1;
-  }
-
-
   @Override
   public double evaluate(double x) {
     double evaluatedValue = 0;
@@ -69,59 +62,27 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     return evaluatedValue;
   }
 
-
   @Override
-  public int findCoefficient(int power) {
-    return polynomialElements.get(power);
-  }
-
-
-  @Override
-  protected boolean equalsAbstractPolynomial(AbstractPolynomial obj) {
-    return obj.equalsSimplePolynomial(this);
-  }
-
-
-  @Override
-  protected boolean equalsSimplePolynomial(SimplePolynomial obj) {
-    return arePolynomialElementsEquals(obj.polynomialElements);
-  }
-
-  protected void addCoefficientToAppropriateIndex(int coefficient, int power) {
-
-    if (power < polynomialElements.size()) {
-      polynomialElements.set(power, this.getCoefficient(power) + coefficient);
-    } else {
-
-      for (int i = polynomialElements.size(); i < power; i++) {
-        polynomialElements.add(0);
-      }
-      polynomialElements.add(coefficient);
-    }
-    cleanUpTrailingZeros();
-  }
-
-  @Override
-  protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
-    Polynomial resultAfterAdding = new SimplePolynomial();
-    int maxDegree = Math.max(this.getDegree(), simplePolynomial.getDegree());
-
-    if (maxDegree == 0) {
-      return resultAfterAdding;
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
     }
 
-    for (int power = 0; power <= maxDegree; power++) {
-      int sum = this.getCoefficient(power) + simplePolynomial.getCoefficient(power);
-      resultAfterAdding.addTerm(sum, power);
+    if (!(obj instanceof Polynomial)) {
+      return false;
     }
-    return resultAfterAdding;
+
+    if (obj instanceof AbstractPolynomial) {
+      AbstractPolynomial that = (AbstractPolynomial) obj;
+      return that.equalsSimplePolynomial(this);
+    }
+    return obj.equals(this);
   }
 
   @Override
-  protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial) {
-    return sparsePolynomial.addSimplePolynomial(this);
+  protected boolean equalsSimplePolynomial(SimplePolynomial simplePolynomial) {
+    return arePolynomialElementsEquals(simplePolynomial.polynomialElements);
   }
-
 
   private void cleanUpTrailingZeros() {
     int power = this.getDegree();
@@ -130,5 +91,4 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
       power--;
     }
   }
-
 }

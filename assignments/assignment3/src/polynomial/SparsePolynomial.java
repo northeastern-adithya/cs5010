@@ -7,37 +7,14 @@ import polynomial.model.PolynomialElement;
 
 public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
+
   public SparsePolynomial() {
     super(new LinkedList<>());
   }
 
   @Override
-  public Polynomial add(Polynomial other) {
-
-    return null;
-  }
-
-  @Override
-  public Polynomial multiply(Polynomial other) {
-    return null;
-  }
-
-  @Override
-  public Polynomial derivative() {
-    Polynomial resultAfterDerivative = new SparsePolynomial();
-    polynomialElements.forEach(
-            element -> {
-              int derivativeCoefficient = findDerivativeCoefficient(element.getCoefficient(), element.getPower());
-              resultAfterDerivative.addTerm(derivativeCoefficient, element.getPower() - 1);
-            }
-    );
-    return resultAfterDerivative;
-  }
-
-
-  @Override
   protected void addCoefficientToAppropriateIndex(int coefficient, int power) {
-    if (power < this.getDegree()) {
+    if (power <= this.getDegree()) {
       int index = 0;
       while (index < polynomialElements.size() && polynomialElements.get(index).getPower() < power) {
         index++;
@@ -54,47 +31,11 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   }
 
   @Override
-  protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
-    SparsePolynomial resultAfterAddition = new SparsePolynomial();
-    int previousPower = 0;
-
-    for (PolynomialElement element : this.polynomialElements) {
-      resultAfterAddition.addTerm(element.getCoefficient() + simplePolynomial.getCoefficient(element.getPower()), element.getPower());
-
-      for (int power = previousPower + 1; power < element.getPower(); power++) {
-        resultAfterAddition.addTerm(simplePolynomial.getCoefficient(power), power);
-      }
-
-      previousPower = element.getPower();
-    }
-
-    for (int power = previousPower + 1; power <= simplePolynomial.getDegree(); power++) {
-      resultAfterAddition.addTerm(simplePolynomial.getCoefficient(power), power);
-    }
-    return resultAfterAddition;
-  }
-
-  @Override
-  protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial) {
-    return null;
-  }
-
-
-  @Override
   public int getMaxPower() {
     return polynomialElements.get(
             polynomialElements.size() - 1
     ).getPower();
   }
-
-  @Override
-  public double evaluate(double x) {
-    return polynomialElements.stream()
-            .mapToDouble(element
-                    -> evaluateValue(element.getCoefficient(), element.getPower(), x))
-            .sum();
-  }
-
 
   @Override
   public int findCoefficient(int power) {
@@ -106,18 +47,48 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   }
 
   @Override
-  protected boolean equalsAbstractPolynomial(AbstractPolynomial obj) {
-    return obj.equalsSparsePolynomial(this);
+  public Polynomial add(Polynomial other) {
+    return null;
   }
 
   @Override
-  protected boolean equalsSparsePolynomial(SparsePolynomial obj) {
-    return arePolynomialElementsEquals(obj.polynomialElements);
+  public Polynomial multiply(Polynomial other) {
+    return null;
   }
 
   @Override
-  protected boolean equalsSimplePolynomial(SimplePolynomial obj) {
-    return obj.equalsSparsePolynomial(this);
+  public Polynomial derivative() {
+    Polynomial resultAfterDerivative = new polynomial.SparsePolynomial();
+    polynomialElements.forEach(
+            element -> {
+              int derivativeCoefficient = findDerivativeCoefficient(element.getCoefficient(), element.getPower());
+              resultAfterDerivative.addTerm(derivativeCoefficient, element.getPower() - 1);
+            }
+    );
+    return resultAfterDerivative;
+  }
+
+  @Override
+  public double evaluate(double x) {
+    return polynomialElements.stream()
+            .mapToDouble(element
+                    -> evaluateValue(element.getCoefficient(), element.getPower(), x))
+            .sum();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof Polynomial)) {
+      return false;
+    }
+    if (obj instanceof AbstractPolynomial) {
+      AbstractPolynomial that = (AbstractPolynomial) obj;
+      return that.equalsSparsePolynomial(this);
+    }
+    return obj.equals(this);
   }
 
   @Override
@@ -128,4 +99,15 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
     }
     return hashCode;
   }
+
+  @Override
+  protected boolean equalsSimplePolynomial(SimplePolynomial simplePolynomial) {
+    return simplePolynomial.equalsSparsePolynomial(this);
+  }
+
+  @Override
+  protected boolean equalsSparsePolynomial(polynomial.SparsePolynomial sparsePolynomial) {
+    return arePolynomialElementsEquals(sparsePolynomial.polynomialElements);
+  }
 }
+

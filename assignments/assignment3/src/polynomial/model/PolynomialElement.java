@@ -1,6 +1,6 @@
 package polynomial.model;
 
-import java.util.Objects;
+import polynomial.PolynomialUtils;
 
 
 public class PolynomialElement {
@@ -42,7 +42,7 @@ public class PolynomialElement {
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.coefficient, this.power);
+    return PolynomialUtils.getHashCodeOfPolynomial(this.coefficient,this.power);
   }
 
 

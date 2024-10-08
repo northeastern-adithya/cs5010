@@ -1,7 +1,6 @@
 package polynomial;
 
 import java.util.List;
-import java.util.Objects;
 
 import polynomial.model.PolynomialElement;
 
@@ -25,7 +24,6 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
     this.polynomialElements = polynomialElements;
   }
 
-
   @Override
   public void addTerm(int coefficient, int power) throws IllegalArgumentException {
     validatePowerToAddTerm(power);
@@ -35,51 +33,12 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
     addCoefficientToAppropriateIndex(coefficient, power);
   }
 
-
   @Override
   public int getDegree() {
     if (isPolynomialEmpty()) {
       return 0;
     }
     return getMaxPower();
-  }
-
-  @Override
-  public int getCoefficient(int power) {
-    if (isInvalidPower(power)) {
-      return 0;
-    }
-    return findCoefficient(power);
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
-    if (!(obj instanceof AbstractPolynomial)) {
-      return false;
-    }
-
-    AbstractPolynomial that = (AbstractPolynomial) obj;
-    if (this.getDegree() != that.getDegree()) {
-      return false;
-    }
-    return this.equalsAbstractPolynomial(that);
-  }
-
-  @Override
-  public int hashCode() {
-    int hashCode = 0;
-    for (int power = 0; power <= this.getDegree(); power++) {
-      int coefficient = this.getCoefficient(power);
-      if (coefficient == 0) {
-        continue;
-      }
-      hashCode += Objects.hash(coefficient, power);
-    }
-    return hashCode;
   }
 
   @Override
@@ -106,45 +65,63 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   }
 
 
+  @Override
+  public int getCoefficient(int power) {
+    if (isInvalidPower(power)) {
+      return 0;
+    }
+    return findCoefficient(power);
+  }
+
+  @Override
+  public int hashCode() {
+    int hashCode = 0;
+    for (int power = 0; power <= this.getDegree(); power++) {
+      int coefficient = this.getCoefficient(power);
+      if (coefficient == 0) {
+        continue;
+      }
+      hashCode += PolynomialUtils.getHashCodeOfPolynomial(coefficient,power);
+    }
+    return hashCode;
+  }
+
+
+  protected abstract void addCoefficientToAppropriateIndex(int coefficient, int power);
+
   protected abstract int getMaxPower();
 
   protected abstract int findCoefficient(int power);
 
-  protected abstract boolean equalsAbstractPolynomial(AbstractPolynomial obj);
+  protected boolean equalsSimplePolynomial(SimplePolynomial simplePolynomial) {
 
-  protected abstract void addCoefficientToAppropriateIndex(int coefficient, int power);
+    if(this.getDegree() != simplePolynomial.getDegree()) {
+      return false;
+    }
 
-
-  protected boolean isPolynomialEmpty() {
-    return polynomialElements.isEmpty();
+    for (int i = 0; i <= simplePolynomial.getDegree(); i++) {
+      if (this.getCoefficient(i) != simplePolynomial.getCoefficient(i)) {
+        return false;
+      }
+    }
+    return true;
   }
 
-
-
-  protected abstract Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial);
-
-
-  protected abstract Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial);
-
-
-
-  protected boolean equalsSparsePolynomial(SparsePolynomial obj) {
-    for (PolynomialElement element : obj.polynomialElements) {
+  protected boolean equalsSparsePolynomial(SparsePolynomial sparsePolynomial) {
+    int previousPower = -1;
+    for (PolynomialElement element : sparsePolynomial.polynomialElements) {
       if (this.getCoefficient(element.getPower()) != element.getCoefficient()) {
         return false;
       }
-    }
-    return true;
-  }
-
-
-  protected boolean equalsSimplePolynomial(SimplePolynomial obj) {
-    for (int i = 0; i <= obj.getDegree(); i++) {
-      if (this.getCoefficient(i) != obj.getCoefficient(i)) {
-        return false;
+      for (int power = previousPower + 1; power < element.getPower(); power++) {
+        if (this.getCoefficient(power) != 0) {
+          return false;
+        }
       }
+      previousPower = element.getPower();
     }
-    return true;
+
+    return this.getDegree() <= previousPower;
   }
 
   protected boolean arePolynomialElementsEquals(List<T> polynomialElements) {
@@ -169,6 +146,10 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
       throw new IllegalArgumentException(
               String.format("Power cannot be negative. Received: %d", power));
     }
+  }
+
+  protected boolean isPolynomialEmpty() {
+    return polynomialElements.isEmpty();
   }
 
 }
