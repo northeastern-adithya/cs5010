@@ -3,9 +3,9 @@ package polynomial;
 import java.util.LinkedList;
 import java.util.Optional;
 
-import polynomial.model.PolynomialContainer;
+import polynomial.model.PolynomialElement;
 
-public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
+public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
   public SparsePolynomial() {
     super(new LinkedList<>());
@@ -44,13 +44,39 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
       }
       int existingCoefficient = this.getCoefficient(power);
       if (existingCoefficient == 0) {
-        polynomialElements.add(index, new PolynomialContainer(power, coefficient));
+        polynomialElements.add(index, new PolynomialElement(power, coefficient));
       } else {
-        polynomialElements.set(index, new PolynomialContainer(power, existingCoefficient + coefficient));
+        polynomialElements.set(index, new PolynomialElement(power, existingCoefficient + coefficient));
       }
     } else {
-      polynomialElements.add(new PolynomialContainer(power, coefficient));
+      polynomialElements.add(new PolynomialElement(power, coefficient));
     }
+  }
+
+  @Override
+  protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
+    SparsePolynomial resultAfterAddition = new SparsePolynomial();
+    int previousPower = 0;
+
+    for (PolynomialElement element : this.polynomialElements) {
+      resultAfterAddition.addTerm(element.getCoefficient() + simplePolynomial.getCoefficient(element.getPower()), element.getPower());
+
+      for (int power = previousPower + 1; power < element.getPower(); power++) {
+        resultAfterAddition.addTerm(simplePolynomial.getCoefficient(power), power);
+      }
+
+      previousPower = element.getPower();
+    }
+
+    for (int power = previousPower + 1; power <= simplePolynomial.getDegree(); power++) {
+      resultAfterAddition.addTerm(simplePolynomial.getCoefficient(power), power);
+    }
+    return resultAfterAddition;
+  }
+
+  @Override
+  protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial) {
+    return null;
   }
 
 
@@ -73,8 +99,8 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
   @Override
   public int findCoefficient(int power) {
     Optional<Integer> optionalCoefficient = polynomialElements.stream()
-            .filter(polynomialContainer -> polynomialContainer.getPower() == power)
-            .map(PolynomialContainer::getCoefficient)
+            .filter(polynomialElement -> polynomialElement.getPower() == power)
+            .map(PolynomialElement::getCoefficient)
             .findFirst();
     return optionalCoefficient.orElse(0);
   }
@@ -97,7 +123,7 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
   @Override
   public int hashCode() {
     int hashCode = 0;
-    for (PolynomialContainer element : polynomialElements) {
+    for (PolynomialElement element : polynomialElements) {
       hashCode += element.hashCode();
     }
     return hashCode;

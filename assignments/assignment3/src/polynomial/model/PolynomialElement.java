@@ -3,7 +3,7 @@ package polynomial.model;
 import java.util.Objects;
 
 
-public class PolynomialContainer {
+public class PolynomialElement {
 
 
   private final int power;
@@ -12,7 +12,7 @@ public class PolynomialContainer {
   private final int coefficient;
 
 
-  public PolynomialContainer(final int power, final int coefficient) {
+  public PolynomialElement(final int power, final int coefficient) {
     this.power = power;
     this.coefficient = coefficient;
   }
@@ -32,11 +32,11 @@ public class PolynomialContainer {
     if (this == obj) {
       return true;
     }
-    if (!(obj instanceof PolynomialContainer)) {
+    if (!(obj instanceof PolynomialElement)) {
       return false;
     }
 
-    PolynomialContainer that = (PolynomialContainer) obj;
+    PolynomialElement that = (PolynomialElement) obj;
     return this.power == that.power && this.coefficient == that.coefficient;
   }
 

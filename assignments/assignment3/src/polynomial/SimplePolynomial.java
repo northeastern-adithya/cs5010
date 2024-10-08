@@ -101,6 +101,27 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     cleanUpTrailingZeros();
   }
 
+  @Override
+  protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
+    Polynomial resultAfterAdding = new SimplePolynomial();
+    int maxDegree = Math.max(this.getDegree(), simplePolynomial.getDegree());
+
+    if (maxDegree == 0) {
+      return resultAfterAdding;
+    }
+
+    for (int power = 0; power <= maxDegree; power++) {
+      int sum = this.getCoefficient(power) + simplePolynomial.getCoefficient(power);
+      resultAfterAdding.addTerm(sum, power);
+    }
+    return resultAfterAdding;
+  }
+
+  @Override
+  protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial) {
+    return sparsePolynomial.addSimplePolynomial(this);
+  }
+
 
   private void cleanUpTrailingZeros() {
     int power = this.getDegree();

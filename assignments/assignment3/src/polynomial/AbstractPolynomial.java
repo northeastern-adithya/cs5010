@@ -3,7 +3,7 @@ package polynomial;
 import java.util.List;
 import java.util.Objects;
 
-import polynomial.model.PolynomialContainer;
+import polynomial.model.PolynomialElement;
 
 
 public abstract class AbstractPolynomial<T> implements Polynomial {
@@ -120,8 +120,16 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   }
 
 
+
+  protected abstract Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial);
+
+
+  protected abstract Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial);
+
+
+
   protected boolean equalsSparsePolynomial(SparsePolynomial obj) {
-    for (PolynomialContainer element : obj.polynomialElements) {
+    for (PolynomialElement element : obj.polynomialElements) {
       if (this.getCoefficient(element.getPower()) != element.getCoefficient()) {
         return false;
       }
