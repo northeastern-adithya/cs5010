@@ -53,10 +53,6 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
     }
   }
 
-  @Override
-  protected AbstractPolynomial<PolynomialContainer> createNewInstance() {
-    return new SparsePolynomial();
-  }
 
   @Override
   public int getMaxPower() {
@@ -81,5 +77,29 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialContainer> {
             .map(PolynomialContainer::getCoefficient)
             .findFirst();
     return optionalCoefficient.orElse(0);
+  }
+
+  @Override
+  protected boolean equalsAbstractPolynomial(AbstractPolynomial obj) {
+    return obj.equalsSparsePolynomial(this);
+  }
+
+  @Override
+  protected boolean equalsSparsePolynomial(SparsePolynomial obj) {
+    return arePolynomialElementsEquals(obj.polynomialElements);
+  }
+
+  @Override
+  protected boolean equalsSimplePolynomial(SimplePolynomial obj) {
+    return obj.equalsSparsePolynomial(this);
+  }
+
+  @Override
+  public int hashCode() {
+    int hashCode = 0;
+    for (PolynomialContainer element : polynomialElements) {
+      hashCode += element.hashCode();
+    }
+    return hashCode;
   }
 }

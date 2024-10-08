@@ -1,7 +1,6 @@
 package polynomial;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class SimplePolynomial extends AbstractPolynomial<Integer> {
@@ -43,6 +42,7 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     return resultAfterMultiplying;
   }
 
+
   @Override
   public Polynomial derivative() {
     Polynomial resultAfterDerivative = new SimplePolynomial();
@@ -53,10 +53,12 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     return resultAfterDerivative;
   }
 
+
   @Override
   public int getMaxPower() {
     return polynomialElements.size() - 1;
   }
+
 
   @Override
   public double evaluate(double x) {
@@ -67,9 +69,22 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     return evaluatedValue;
   }
 
+
   @Override
   public int findCoefficient(int power) {
     return polynomialElements.get(power);
+  }
+
+
+  @Override
+  protected boolean equalsAbstractPolynomial(AbstractPolynomial obj) {
+    return obj.equalsSimplePolynomial(this);
+  }
+
+
+  @Override
+  protected boolean equalsSimplePolynomial(SimplePolynomial obj) {
+    return arePolynomialElementsEquals(obj.polynomialElements);
   }
 
   protected void addCoefficientToAppropriateIndex(int coefficient, int power) {
@@ -84,11 +99,6 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
       polynomialElements.add(coefficient);
     }
     cleanUpTrailingZeros();
-  }
-
-  @Override
-  protected AbstractPolynomial<Integer> createNewInstance() {
-    return new SimplePolynomial();
   }
 
 

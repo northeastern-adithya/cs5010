@@ -3,6 +3,8 @@ package polynomial;
 import java.util.List;
 import java.util.Objects;
 
+import polynomial.model.PolynomialContainer;
+
 
 public abstract class AbstractPolynomial<T> implements Polynomial {
 
@@ -26,8 +28,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
 
   @Override
   public void addTerm(int coefficient, int power) throws IllegalArgumentException {
-
-    validatePower(power);
+    validatePowerToAddTerm(power);
     if (coefficient == 0) {
       return;
     }
@@ -43,8 +44,6 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
     return getMaxPower();
   }
 
-  protected abstract int getMaxPower();
-
   @Override
   public int getCoefficient(int power) {
     if (isInvalidPower(power)) {
@@ -53,13 +52,35 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
     return findCoefficient(power);
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
 
-  protected abstract int findCoefficient(int power);
+    if (!(obj instanceof AbstractPolynomial)) {
+      return false;
+    }
 
-  private boolean isInvalidPower(int power) {
-    return power < 0 || power > this.getDegree() || isPolynomialEmpty();
+    AbstractPolynomial that = (AbstractPolynomial) obj;
+    if (this.getDegree() != that.getDegree()) {
+      return false;
+    }
+    return this.equalsAbstractPolynomial(that);
   }
 
+  @Override
+  public int hashCode() {
+    int hashCode = 0;
+    for (int power = 0; power <= this.getDegree(); power++) {
+      int coefficient = this.getCoefficient(power);
+      if (coefficient == 0) {
+        continue;
+      }
+      hashCode += Objects.hash(coefficient, power);
+    }
+    return hashCode;
+  }
 
   @Override
   public String toString() {
@@ -85,29 +106,13 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   }
 
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!(obj instanceof AbstractPolynomial)) {
-      return false;
-    }
-    AbstractPolynomial that = (AbstractPolynomial) obj;
-    return this.toString().equals(that.toString());
-  }
+  protected abstract int getMaxPower();
 
+  protected abstract int findCoefficient(int power);
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(this.toString());
-  }
-
+  protected abstract boolean equalsAbstractPolynomial(AbstractPolynomial obj);
 
   protected abstract void addCoefficientToAppropriateIndex(int coefficient, int power);
-
-
-  protected abstract AbstractPolynomial<T> createNewInstance();
 
 
   protected boolean isPolynomialEmpty() {
@@ -115,11 +120,27 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   }
 
 
-  protected void validatePower(int power) throws IllegalArgumentException {
-    if (power < 0) {
-      throw new IllegalArgumentException(
-              String.format("Power cannot be negative. Received: %d", power));
+  protected boolean equalsSparsePolynomial(SparsePolynomial obj) {
+    for (PolynomialContainer element : obj.polynomialElements) {
+      if (this.getCoefficient(element.getPower()) != element.getCoefficient()) {
+        return false;
+      }
     }
+    return true;
+  }
+
+
+  protected boolean equalsSimplePolynomial(SimplePolynomial obj) {
+    for (int i = 0; i <= obj.getDegree(); i++) {
+      if (this.getCoefficient(i) != obj.getCoefficient(i)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  protected boolean arePolynomialElementsEquals(List<T> polynomialElements) {
+    return this.polynomialElements.equals(polynomialElements);
   }
 
 
@@ -130,4 +151,16 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   protected int findDerivativeCoefficient(int currentCoefficient, int power) {
     return currentCoefficient * power;
   }
+
+  private boolean isInvalidPower(int power) {
+    return power < 0 || power > this.getDegree() || isPolynomialEmpty();
+  }
+
+  private void validatePowerToAddTerm(int power) throws IllegalArgumentException {
+    if (power < 0) {
+      throw new IllegalArgumentException(
+              String.format("Power cannot be negative. Received: %d", power));
+    }
+  }
+
 }
