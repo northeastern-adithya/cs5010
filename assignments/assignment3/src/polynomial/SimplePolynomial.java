@@ -35,7 +35,11 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
 
   @Override
   public Polynomial add(Polynomial other) {
-    return null;
+    if(other instanceof AbstractPolynomial){
+      AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
+      return abstractPolynomial.addSimplePolynomial(this);
+    }
+    return other.add(this);
   }
 
   @Override
@@ -73,7 +77,7 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
     }
 
     if (obj instanceof AbstractPolynomial) {
-      AbstractPolynomial that = (AbstractPolynomial) obj;
+      AbstractPolynomial<?> that = (AbstractPolynomial<?>) obj;
       return that.equalsSimplePolynomial(this);
     }
     return obj.equals(this);

@@ -85,7 +85,7 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
       return false;
     }
     if (obj instanceof AbstractPolynomial) {
-      AbstractPolynomial that = (AbstractPolynomial) obj;
+      AbstractPolynomial<?> that = (AbstractPolynomial<?>) obj;
       return that.equalsSparsePolynomial(this);
     }
     return obj.equals(this);
@@ -98,6 +98,53 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
       hashCode += element.hashCode();
     }
     return hashCode;
+  }
+
+  @Override
+  protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
+    return simplePolynomial.addSparsePolynomial(this);
+  }
+
+  @Override
+  protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial) {
+    int indexOfThis = 0;
+    int indexOfOtherSparsePolynomial = 0;
+
+    int thisPolynomialSize = this.polynomialElements.size();
+    int otherSparsePolynomialSize = sparsePolynomial.polynomialElements.size();
+
+    SparsePolynomial resultAfterAddition = new SparsePolynomial();
+
+    while (indexOfThis < thisPolynomialSize && indexOfOtherSparsePolynomial < otherSparsePolynomialSize) {
+      PolynomialElement thisElement = this.polynomialElements.get(indexOfThis);
+      PolynomialElement otherElement = sparsePolynomial.polynomialElements.get(indexOfOtherSparsePolynomial);
+      if (thisElement.getPower() == otherElement.getPower()) {
+        int sum = thisElement.getCoefficient() + otherElement.getCoefficient();
+        resultAfterAddition.addTerm(sum, thisElement.getPower());
+        indexOfThis++;
+        indexOfOtherSparsePolynomial++;
+      } else if (thisElement.getPower() < otherElement.getPower()) {
+        resultAfterAddition.addTerm(thisElement.getCoefficient(), thisElement.getPower());
+        indexOfThis++;
+      } else {
+        resultAfterAddition.addTerm(otherElement.getCoefficient(), otherElement.getPower());
+        indexOfOtherSparsePolynomial++;
+      }
+    }
+
+    while (indexOfThis < thisPolynomialSize) {
+      PolynomialElement thisElement = this.polynomialElements.get(indexOfThis);
+      resultAfterAddition.addTerm(thisElement.getCoefficient(), thisElement.getPower());
+      indexOfThis++;
+    }
+
+    while (indexOfOtherSparsePolynomial < otherSparsePolynomialSize) {
+      PolynomialElement otherElement = sparsePolynomial.polynomialElements.get(indexOfOtherSparsePolynomial);
+      resultAfterAddition.addTerm(otherElement.getCoefficient(), otherElement.getPower());
+      indexOfOtherSparsePolynomial++;
+    }
+
+    return null;
   }
 
   @Override

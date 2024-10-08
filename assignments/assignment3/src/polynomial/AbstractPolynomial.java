@@ -93,6 +93,36 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
 
   protected abstract int findCoefficient(int power);
 
+
+  protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial){
+    Polynomial resultAfterAdding = new SimplePolynomial();
+    int maxDegree = Math.max(this.getDegree(), simplePolynomial.getDegree());
+    if (maxDegree == 0) {
+      return resultAfterAdding;
+    }
+    for (int power = 0; power <= maxDegree; power++) {
+      int sum = this.getCoefficient(power) + simplePolynomial.getCoefficient(power);
+      resultAfterAdding.addTerm(sum, power);
+    }
+    return resultAfterAdding;
+  }
+
+  protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial){
+    SparsePolynomial resultAfterAddition = new SparsePolynomial();
+    int previousPower = 0;
+    for (PolynomialElement element : sparsePolynomial.polynomialElements) {
+      resultAfterAddition.addTerm(element.getCoefficient() + this.getCoefficient(element.getPower()), element.getPower());
+      for (int power = previousPower + 1; power < element.getPower(); power++) {
+        resultAfterAddition.addTerm(this.getCoefficient(power), power);
+      }
+      previousPower = element.getPower();
+    }
+    for (int power = previousPower + 1; power <= this.getDegree(); power++) {
+      resultAfterAddition.addTerm(this.getCoefficient(power), power);
+    }
+    return resultAfterAddition;
+  }
+
   protected boolean equalsSimplePolynomial(SimplePolynomial simplePolynomial) {
 
     if(this.getDegree() != simplePolynomial.getDegree()) {
