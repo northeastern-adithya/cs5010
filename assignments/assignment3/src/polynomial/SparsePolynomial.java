@@ -48,7 +48,11 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
   @Override
   public Polynomial add(Polynomial other) {
-    return null;
+    if (other instanceof AbstractPolynomial) {
+      AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
+      return abstractPolynomial.addSparsePolynomial(this);
+    }
+    return other.add(this);
   }
 
   @Override
@@ -113,7 +117,7 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
     int thisPolynomialSize = this.polynomialElements.size();
     int otherSparsePolynomialSize = sparsePolynomial.polynomialElements.size();
 
-    SparsePolynomial resultAfterAddition = new SparsePolynomial();
+    Polynomial resultAfterAddition = new SparsePolynomial();
 
     while (indexOfThis < thisPolynomialSize && indexOfOtherSparsePolynomial < otherSparsePolynomialSize) {
       PolynomialElement thisElement = this.polynomialElements.get(indexOfThis);
@@ -144,7 +148,7 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
       indexOfOtherSparsePolynomial++;
     }
 
-    return null;
+    return resultAfterAddition;
   }
 
   @Override

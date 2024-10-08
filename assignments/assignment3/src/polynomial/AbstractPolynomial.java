@@ -108,7 +108,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   }
 
   protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial){
-    SparsePolynomial resultAfterAddition = new SparsePolynomial();
+    Polynomial resultAfterAddition = new SparsePolynomial();
     int previousPower = 0;
     for (PolynomialElement element : sparsePolynomial.polynomialElements) {
       resultAfterAddition.addTerm(element.getCoefficient() + this.getCoefficient(element.getPower()), element.getPower());
