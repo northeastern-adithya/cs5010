@@ -214,6 +214,9 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
    * @return true if the given object is equals to the sparse polynomial, false otherwise
    */
   protected boolean equalsSparsePolynomial(SparsePolynomial sparsePolynomial) {
+    if(this.isPolynomialEmpty() && sparsePolynomial.isPolynomialEmpty()){
+      return true;
+    }
     int previousPower = -1;
     for (PolynomialElement element : sparsePolynomial.polynomialElements) {
       if (this.getCoefficient(element.getPower()) != element.getCoefficient()) {
