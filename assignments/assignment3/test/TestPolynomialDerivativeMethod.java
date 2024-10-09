@@ -1,30 +1,63 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import polynomial.Polynomial;
 import polynomial.SimplePolynomial;
+import polynomial.SparsePolynomial;
 
 import static org.junit.Assert.assertEquals;
 
 
 /**
- * Class to test the cases for derivative method in SimplePolynomial.
+ * Class to test the cases for derivative method in Polynomial.
+ * Runs with parameterized test runner.
  */
-public class TestSimplePolynomialDerivativeMethod {
+@RunWith(Parameterized.class)
+public class TestPolynomialDerivativeMethod {
 
   /**
-   * The simple polynomial to be tested.
+   * The class of the polynomial to be tested.
+   */
+  private final Class<? extends Polynomial> polynomialClass;
+  /**
+   * The polynomial object to be tested.
    */
   private Polynomial polynomialUnderTest;
+
+  /**
+   * Constructor for parameterized to instantiate the class.
+   *
+   * @param polynomialClass – the class of the polynomial to be tested.
+   */
+  public TestPolynomialDerivativeMethod(Class<? extends Polynomial> polynomialClass) {
+    this.polynomialClass = polynomialClass;
+  }
+
+  /**
+   * Create a collection of polynomial implementations to be tested.
+   *
+   * @return the collection of polynomial implementations to be tested.
+   */
+  @Parameterized.Parameters(name = "Derivative Tests For: {0}")
+  public static Collection<Object[]> polynomialImplementations() {
+    return Arrays.asList(new Object[][]{
+            {SimplePolynomial.class},
+            {SparsePolynomial.class}
+    });
+  }
 
   /**
    * Set up the polynomial under test with no elements.
    */
   @Before
   public void setUp() {
-    polynomialUnderTest = new SimplePolynomial();
+    polynomialUnderTest = TestUtils.createPolynomial(polynomialClass);
   }
-
 
   /**
    * Test the derivative method with all positive coefficients.
@@ -38,7 +71,7 @@ public class TestSimplePolynomialDerivativeMethod {
 
     Polynomial actualResult = polynomialUnderTest.derivative();
 
-    Polynomial expectedResult = new SimplePolynomial();
+    Polynomial expectedResult = TestUtils.createPolynomial(polynomialClass);
     expectedResult.addTerm(18, 5);
     expectedResult.addTerm(8, 3);
     expectedResult.addTerm(3, 2);
@@ -60,7 +93,7 @@ public class TestSimplePolynomialDerivativeMethod {
 
     Polynomial actualResult = polynomialUnderTest.derivative();
 
-    Polynomial expectedResult = new SimplePolynomial();
+    Polynomial expectedResult = TestUtils.createPolynomial(polynomialClass);
     expectedResult.addTerm(-18, 5);
     expectedResult.addTerm(-8, 3);
     expectedResult.addTerm(-3, 2);
@@ -82,7 +115,7 @@ public class TestSimplePolynomialDerivativeMethod {
 
     Polynomial actualResult = polynomialUnderTest.derivative();
 
-    Polynomial expectedResult = new SimplePolynomial();
+    Polynomial expectedResult = TestUtils.createPolynomial(polynomialClass);
     expectedResult.addTerm(-18, 5);
     expectedResult.addTerm(8, 3);
     expectedResult.addTerm(3, 2);
@@ -99,7 +132,7 @@ public class TestSimplePolynomialDerivativeMethod {
     polynomialUnderTest.addTerm(2, 0);
     Polynomial actualResult = polynomialUnderTest.derivative();
 
-    Polynomial expectedResult = new SimplePolynomial();
+    Polynomial expectedResult = TestUtils.createPolynomial(polynomialClass);
     assertEquals(expectedResult, actualResult);
     assertEquals("0", actualResult.toString());
   }
@@ -110,7 +143,7 @@ public class TestSimplePolynomialDerivativeMethod {
   @Test
   public void testDerivativeWithZeroPolynomial() {
     Polynomial actualResult = polynomialUnderTest.derivative();
-    Polynomial expectedResult = new SimplePolynomial();
+    Polynomial expectedResult = TestUtils.createPolynomial(polynomialClass);
     assertEquals(expectedResult, actualResult);
     assertEquals("0", actualResult.toString());
   }
@@ -126,7 +159,7 @@ public class TestSimplePolynomialDerivativeMethod {
 
     Polynomial actualResult = polynomialUnderTest.derivative().derivative().derivative();
 
-    Polynomial expectedResult = new SimplePolynomial();
+    Polynomial expectedResult = TestUtils.createPolynomial(polynomialClass);
 
     assertEquals(expectedResult, actualResult);
     assertEquals("0", actualResult.toString());
