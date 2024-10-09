@@ -1,27 +1,63 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import polynomial.Polynomial;
 import polynomial.SimplePolynomial;
+import polynomial.SparsePolynomial;
 
 import static org.junit.Assert.assertEquals;
 
 
 /**
- * Class to test the cases for get coefficient method in SimplePolynomial.
+ * Class to test the cases for getCoefficient method in Polynomial.
+ * Runs with parameterized test runner.
  */
-public class TestSimplePolynomialGetCoefficientMethod {
+@RunWith(Parameterized.class)
+public class TestPolynomialGetCoefficientMethod {
+
+  /**
+   * The class of the polynomial to be tested.
+   */
+  private final Class<? extends Polynomial> polynomialClass;
   /**
    * The polynomial object to be tested.
    */
   private Polynomial polynomialUnderTest;
 
   /**
+   * Constructor for parameterized to instantiate the class.
+   *
+   * @param polynomialClass – the class of the polynomial to be tested.
+   */
+  public TestPolynomialGetCoefficientMethod(Class<? extends Polynomial> polynomialClass) {
+    this.polynomialClass = polynomialClass;
+  }
+
+  /**
+   * Create a collection of polynomial implementations to be tested.
+   *
+   * @return the collection of polynomial implementations to be tested.
+   */
+  @Parameterized.Parameters(name = "Get Coefficient Tests For: {0}")
+  public static Collection<Object[]> polynomialImplementations() {
+    return Arrays.asList(new Object[][]{
+            {SimplePolynomial.class},
+            {SparsePolynomial.class}
+    });
+  }
+
+  /**
    * Set up the polynomial under test with no elements.
    */
   @Before
   public void setUp() {
-    polynomialUnderTest = new SimplePolynomial();
+    polynomialUnderTest = TestUtils.createPolynomial(polynomialClass);
   }
 
   /**

@@ -33,8 +33,12 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
         polynomialElements.add(index, new PolynomialElement(power, coefficient));
       } else {
         // This cases handles the scenario when the power already exists in the polynomial.
-        polynomialElements.set(index,
-                new PolynomialElement(power, existingCoefficient + coefficient));
+        int coefficientSum = existingCoefficient + coefficient;
+        if (coefficientSum == 0) {
+          polynomialElements.remove(index);
+        } else {
+          polynomialElements.set(index, new PolynomialElement(power, coefficientSum));
+        }
       }
     } else {
       polynomialElements.add(new PolynomialElement(power, coefficient));
