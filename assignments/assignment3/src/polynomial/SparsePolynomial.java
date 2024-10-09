@@ -57,7 +57,11 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
   @Override
   public Polynomial multiply(Polynomial other) {
-    return null;
+    if (other instanceof AbstractPolynomial) {
+      AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
+      return abstractPolynomial.multiplySparsePolynomial(this);
+    }
+    return other.multiply(this);
   }
 
   @Override
@@ -65,6 +69,9 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
     Polynomial resultAfterDerivative = new polynomial.SparsePolynomial();
     polynomialElements.forEach(
             element -> {
+              if(element.getPower() == 0) {
+                return;
+              }
               int derivativeCoefficient = findDerivativeCoefficient(element.getCoefficient(), element.getPower());
               resultAfterDerivative.addTerm(derivativeCoefficient, element.getPower() - 1);
             }
@@ -149,6 +156,24 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
     }
 
     return resultAfterAddition;
+  }
+
+  @Override
+  public Polynomial multiplySimplePolynomial(SimplePolynomial simplePolynomial) {
+    return simplePolynomial.multiplySparsePolynomial(this);
+  }
+
+  @Override
+  public Polynomial multiplySparsePolynomial(SparsePolynomial sparsePolynomial) {
+    Polynomial resultAfterMultiplying = new SparsePolynomial();
+    for (PolynomialElement thisElement : this.polynomialElements) {
+      for (PolynomialElement otherElement : sparsePolynomial.polynomialElements) {
+        int power = thisElement.getPower() + otherElement.getPower();
+        int coefficient = thisElement.getCoefficient() * otherElement.getCoefficient();
+        resultAfterMultiplying.addTerm(coefficient, power);
+      }
+    }
+    return resultAfterMultiplying;
   }
 
   @Override

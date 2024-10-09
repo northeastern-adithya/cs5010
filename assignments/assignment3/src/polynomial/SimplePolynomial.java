@@ -44,7 +44,11 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
 
   @Override
   public Polynomial multiply(Polynomial other) {
-    return null;
+    if (other instanceof AbstractPolynomial) {
+      AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
+      return abstractPolynomial.multiplySimplePolynomial(this);
+    }
+    return other.multiply(this);
   }
 
   @Override

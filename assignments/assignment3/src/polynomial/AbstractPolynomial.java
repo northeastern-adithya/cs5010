@@ -100,7 +100,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
 
   protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial) {
     Polynomial resultAfterAddition = new SparsePolynomial();
-    int previousPower = 0;
+    int previousPower = -1;
     for (PolynomialElement element : sparsePolynomial.polynomialElements) {
       resultAfterAddition.addTerm(element.getCoefficient() + this.getCoefficient(element.getPower()), element.getPower());
       for (int power = previousPower + 1; power < element.getPower(); power++) {
@@ -112,6 +112,28 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
       resultAfterAddition.addTerm(this.getCoefficient(power), power);
     }
     return resultAfterAddition;
+  }
+
+  protected Polynomial multiplySimplePolynomial(SimplePolynomial simplePolynomial){
+    Polynomial resultAfterMultiplying = new SimplePolynomial();
+    for (int i = 0; i <= this.getDegree(); i++) {
+      for (int j = 0; j <= simplePolynomial.getDegree(); j++) {
+        int product = this.getCoefficient(i) * simplePolynomial.getCoefficient(j);
+        resultAfterMultiplying.addTerm(product, i + j);
+      }
+    }
+    return resultAfterMultiplying;
+  }
+
+  protected Polynomial multiplySparsePolynomial(SparsePolynomial sparsePolynomial){
+    Polynomial resultAfterMultiplying = new SparsePolynomial();
+    for (PolynomialElement element : sparsePolynomial.polynomialElements) {
+      for (int i = 0; i <= this.getDegree(); i++) {
+        int product = this.getCoefficient(i) * element.getCoefficient();
+        resultAfterMultiplying.addTerm(product, i + element.getPower());
+      }
+    }
+    return resultAfterMultiplying;
   }
 
   protected boolean equalsSimplePolynomial(SimplePolynomial simplePolynomial) {
