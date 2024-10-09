@@ -5,9 +5,17 @@ import java.util.Optional;
 
 import polynomial.model.PolynomialElement;
 
+/**
+ * A simple polynomial class that extends AbstractPolynomial.
+ * This class stores polynomial elements as linked list of these elements.
+ * Provides concrete implementation to function present in polynomial interface.
+ */
 public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
 
+  /**
+   * Constructs a SimplePolynomial object with an empty linked list.
+   */
   public SparsePolynomial() {
     super(new LinkedList<>());
   }
@@ -23,6 +31,7 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
       if (existingCoefficient == 0) {
         polynomialElements.add(index, new PolynomialElement(power, coefficient));
       } else {
+        // This cases handles the scenario when the power already exists in the polynomial.
         polynomialElements.set(index, new PolynomialElement(power, existingCoefficient + coefficient));
       }
     } else {
@@ -50,8 +59,11 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   public Polynomial add(Polynomial other) {
     if (other instanceof AbstractPolynomial) {
       AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
+      // Delegates the addition knowing the fact that the current polynomial is a sparse polynomial.
       return abstractPolynomial.addSparsePolynomial(this);
     }
+    // If a polynomial is not abstract polynomial,
+    // then addition is delegated to the other polynomial.
     return other.add(this);
   }
 
@@ -59,8 +71,11 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   public Polynomial multiply(Polynomial other) {
     if (other instanceof AbstractPolynomial) {
       AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
+      // Delegates the multiplication knowing the fact that the current polynomial is a sparse polynomial.
       return abstractPolynomial.multiplySparsePolynomial(this);
     }
+    // If a polynomial is not abstract polynomial,
+    // then multiplication is delegated to the other polynomial.
     return other.multiply(this);
   }
 
@@ -69,7 +84,8 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
     Polynomial resultAfterDerivative = new polynomial.SparsePolynomial();
     polynomialElements.forEach(
             element -> {
-              if(element.getPower() == 0) {
+              // Zero is the derivative of a constant, hence ignoring it.
+              if (element.getPower() == 0) {
                 return;
               }
               int derivativeCoefficient = findDerivativeCoefficient(element.getCoefficient(), element.getPower());
@@ -87,6 +103,14 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
             .sum();
   }
 
+  /**
+   * Compares sparse polynomial with another object to verify if they are equal or not.
+   * If the object is not an instance of Polynomial then returns false.
+   * Additional checks are performed to ensure polynomial coefficients are equal.
+   *
+   * @param obj the object to compare with
+   * @return true if the objects are equal, false otherwise
+   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -102,6 +126,8 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
     return obj.equals(this);
   }
 
+  // Overriding the hashCode to improve the speed since sparse polynomial has
+  // only non-zero elements.
   @Override
   public int hashCode() {
     int hashCode = 0;
@@ -113,9 +139,18 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
   @Override
   protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
+    // Using addition with sparse polynomial since its more optimized.
     return simplePolynomial.addSparsePolynomial(this);
   }
 
+
+  /**
+   * Adds the given sparse polynomial to the current polynomial.
+   * Addition is performed considering both the polynomials are sparse polynomial
+   *
+   * @param sparsePolynomial the sparse polynomial to be added
+   * @return the sparse polynomial after adding the sparse polynomial
+   */
   @Override
   protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial) {
     int indexOfThis = 0;
@@ -160,12 +195,21 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
   @Override
   public Polynomial multiplySimplePolynomial(SimplePolynomial simplePolynomial) {
+    // Using multiplication with sparse polynomial since its more optimized.
     return simplePolynomial.multiplySparsePolynomial(this);
   }
 
+  /**
+   * Multiplies the given sparse polynomial to the current polynomial.
+   * Multiplication is performed considering both the polynomials are sparse polynomial
+   *
+   * @param sparsePolynomial the sparse polynomial to be multiplied
+   * @return the sparse polynomial after multiplying the sparse polynomial
+   */
   @Override
   public Polynomial multiplySparsePolynomial(SparsePolynomial sparsePolynomial) {
     Polynomial resultAfterMultiplying = new SparsePolynomial();
+    // Iterating through all the non-zero coefficients
     for (PolynomialElement thisElement : this.polynomialElements) {
       for (PolynomialElement otherElement : sparsePolynomial.polynomialElements) {
         int power = thisElement.getPower() + otherElement.getPower();
@@ -178,15 +222,19 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
   @Override
   protected boolean equalsSimplePolynomial(SimplePolynomial simplePolynomial) {
+    // Using equals with sparse polynomial since its more optimized.
     return simplePolynomial.equalsSparsePolynomial(this);
   }
 
   @Override
   protected boolean equalsSparsePolynomial(polynomial.SparsePolynomial sparsePolynomial) {
+    // Comparing arrays directly since both objects are simple polynomials
     return arePolynomialElementsEquals(sparsePolynomial.polynomialElements);
   }
 
 
+  // Is efficient since the elements have non-zero coefficients
+  // and are stored in increasing order of their power.
   @Override
   public String toString() {
     if (isPolynomialEmpty()) {
