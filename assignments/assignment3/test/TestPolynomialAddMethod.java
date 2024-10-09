@@ -50,10 +50,10 @@ public class TestPolynomialAddMethod {
   @Parameterized.Parameters(name = "Addition Test For Combination: {0} + {1}")
   public static Collection<Object[]> polynomialImplementations() {
     return Arrays.asList(new Object[][]{
-            {SimplePolynomial.class,SimplePolynomial.class},
-            {SparsePolynomial.class,SparsePolynomial.class},
-            {SimplePolynomial.class,SparsePolynomial.class},
-            {SparsePolynomial.class,SimplePolynomial.class}
+            {SimplePolynomial.class, SimplePolynomial.class},
+            {SparsePolynomial.class, SparsePolynomial.class},
+            {SimplePolynomial.class, SparsePolynomial.class},
+            {SparsePolynomial.class, SimplePolynomial.class}
     });
   }
 
@@ -68,7 +68,7 @@ public class TestPolynomialAddMethod {
     firstPolynomialToAdd.addTerm(-2, 1);
     firstPolynomialToAdd.addTerm(5, 0);
 
-    Polynomial secondPolynomialToAdd = TestUtils.createPolynomial(polynomialClassOfSecondType);;
+    Polynomial secondPolynomialToAdd = TestUtils.createPolynomial(polynomialClassOfSecondType);
     secondPolynomialToAdd.addTerm(2, 2);
     secondPolynomialToAdd.addTerm(1, 1);
     secondPolynomialToAdd.addTerm(3, 0);
@@ -132,7 +132,8 @@ public class TestPolynomialAddMethod {
 
     Polynomial secondPolynomialToAdd = TestUtils.createPolynomial(polynomialClassOfSecondType);
 
-    Polynomial actualResult = TestUtils.createPolynomial(polynomialClassOfFirstType).add(secondPolynomialToAdd);
+    Polynomial actualResult =
+            TestUtils.createPolynomial(polynomialClassOfFirstType).add(secondPolynomialToAdd);
     assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
@@ -408,11 +409,11 @@ public class TestPolynomialAddMethod {
     assertEquals(3, secondResult.getDegree());
 
   }
-  
-  
+
+
   private void assertIfResultIsSparseIfOneOfThePolynomialIsSparse(Polynomial actualResult) {
-    if (polynomialClassOfFirstType.equals(SparsePolynomial.class) ||
-            polynomialClassOfSecondType.equals(SparsePolynomial.class)) {
+    if (polynomialClassOfFirstType.equals(SparsePolynomial.class)
+            || polynomialClassOfSecondType.equals(SparsePolynomial.class)) {
       assertEquals(SparsePolynomial.class, actualResult.getClass());
     }
   }
