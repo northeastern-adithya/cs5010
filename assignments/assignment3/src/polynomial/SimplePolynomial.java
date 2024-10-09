@@ -35,7 +35,7 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
 
   @Override
   public Polynomial add(Polynomial other) {
-    if(other instanceof AbstractPolynomial){
+    if (other instanceof AbstractPolynomial) {
       AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
       return abstractPolynomial.addSimplePolynomial(this);
     }

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class PolynomialUtils {
 
-  private PolynomialUtils(){
+  private PolynomialUtils() {
 
   }
 

@@ -1,5 +1,6 @@
 package polynomial.model;
 
+import polynomial.PolynomialConstants;
 import polynomial.PolynomialUtils;
 
 
@@ -42,7 +43,18 @@ public class PolynomialElement {
 
   @Override
   public int hashCode() {
-    return PolynomialUtils.getHashCodeOfPolynomial(this.coefficient,this.power);
+    return PolynomialUtils.getHashCodeOfPolynomial(this.coefficient, this.power);
+  }
+
+  @Override
+  public String toString() {
+    if (this.power == 0) {
+      return Integer.toString(this.coefficient);
+    }
+    if (this.coefficient == 0) {
+      return PolynomialConstants.EMPTY_STRING;
+    }
+    return this.coefficient + PolynomialConstants.X_POWER_SYMBOL + this.power;
   }
 
 

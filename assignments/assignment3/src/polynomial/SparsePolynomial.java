@@ -160,5 +160,24 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   protected boolean equalsSparsePolynomial(polynomial.SparsePolynomial sparsePolynomial) {
     return arePolynomialElementsEquals(sparsePolynomial.polynomialElements);
   }
+
+
+  @Override
+  public String toString() {
+    if (isPolynomialEmpty()) {
+      return PolynomialConstants.EMPTY_POLYNOMIAL;
+    }
+    StringBuilder polynomialAsString = new StringBuilder();
+    int elementsSize = polynomialElements.size();
+    for (int index = elementsSize - 1; index >= 0; index--) {
+      PolynomialElement element = polynomialElements.get(index);
+      if (element.getCoefficient() > 0 && index != elementsSize - 1) {
+        polynomialAsString.append(PolynomialConstants.PLUS_SYMBOL);
+      }
+      polynomialAsString.append(element);
+    }
+    return polynomialAsString.toString();
+
+  }
 }
 

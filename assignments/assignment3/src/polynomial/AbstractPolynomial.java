@@ -8,15 +8,6 @@ import polynomial.model.PolynomialElement;
 public abstract class AbstractPolynomial<T> implements Polynomial {
 
 
-  private static final String EMPTY_POLYNOMIAL = "0";
-
-
-  private static final String PLUS_SYMBOL = "+";
-
-
-  private static final String X_POWER_SYMBOL = "x^";
-
-
   protected final List<T> polynomialElements;
 
 
@@ -44,7 +35,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   @Override
   public String toString() {
     if (isPolynomialEmpty()) {
-      return EMPTY_POLYNOMIAL;
+      return PolynomialConstants.EMPTY_POLYNOMIAL;
     }
     StringBuilder polynomialAsString = new StringBuilder();
     int currentDegree = this.getDegree();
@@ -54,11 +45,11 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
         continue;
       }
       if (coefficient > 0 && i != currentDegree) {
-        polynomialAsString.append(PLUS_SYMBOL);
+        polynomialAsString.append(PolynomialConstants.PLUS_SYMBOL);
       }
       polynomialAsString.append(coefficient);
       if (i > 0) {
-        polynomialAsString.append(X_POWER_SYMBOL).append(i);
+        polynomialAsString.append(PolynomialConstants.X_POWER_SYMBOL).append(i);
       }
     }
     return polynomialAsString.toString();
@@ -81,7 +72,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
       if (coefficient == 0) {
         continue;
       }
-      hashCode += PolynomialUtils.getHashCodeOfPolynomial(coefficient,power);
+      hashCode += PolynomialUtils.getHashCodeOfPolynomial(coefficient, power);
     }
     return hashCode;
   }
@@ -94,7 +85,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   protected abstract int findCoefficient(int power);
 
 
-  protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial){
+  protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
     Polynomial resultAfterAdding = new SimplePolynomial();
     int maxDegree = Math.max(this.getDegree(), simplePolynomial.getDegree());
     if (maxDegree == 0) {
@@ -107,7 +98,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
     return resultAfterAdding;
   }
 
-  protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial){
+  protected Polynomial addSparsePolynomial(SparsePolynomial sparsePolynomial) {
     Polynomial resultAfterAddition = new SparsePolynomial();
     int previousPower = 0;
     for (PolynomialElement element : sparsePolynomial.polynomialElements) {
@@ -125,7 +116,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
 
   protected boolean equalsSimplePolynomial(SimplePolynomial simplePolynomial) {
 
-    if(this.getDegree() != simplePolynomial.getDegree()) {
+    if (this.getDegree() != simplePolynomial.getDegree()) {
       return false;
     }
 
