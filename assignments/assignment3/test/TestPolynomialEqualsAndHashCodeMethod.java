@@ -1,40 +1,70 @@
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import polynomial.Polynomial;
 import polynomial.SimplePolynomial;
+import polynomial.SparsePolynomial;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * Class to test the cases for equals and hashcode method in SimplePolynomial.
+ * Class to test the cases for equals and hashcode method in Polynomial.
+ * Runs with parameterized test runner.
  */
-public class TestSimplePolynomialEqualsAndHashcodeMethod {
+@RunWith(Parameterized.class)
+public class TestPolynomialEqualsAndHashCodeMethod {
 
   /**
-   * The polynomial object to be tested.
+   * The class of the polynomial of first type to be tested.
    */
-  private Polynomial polynomialUnderTest;
+  private final Class<? extends Polynomial> polynomialClassOfFirstType;
 
   /**
-   * Set up the polynomial under test with no elements.
+   * The class of the polynomial of second type to be tested.
    */
-  @Before
-  public void setUp() {
-    polynomialUnderTest = new SimplePolynomial();
+  private final Class<? extends Polynomial> polynomialClassOfSecondType;
+
+  /**
+   * Constructor for parameterized to instantiate the class.
+   *
+   * @param polynomialClassOfFirstType – the class of the polynomial to be tested.
+   */
+  public TestPolynomialEqualsAndHashCodeMethod(
+          Class<? extends Polynomial> polynomialClassOfFirstType,
+          Class<? extends Polynomial> polynomialClassOfSecondType) {
+    this.polynomialClassOfFirstType = polynomialClassOfFirstType;
+    this.polynomialClassOfSecondType = polynomialClassOfSecondType;
   }
 
+  /**
+   * Create a collection of polynomial implementations to be tested.
+   *
+   * @return the collection of polynomial implementations to be tested.
+   */
+  @Parameterized.Parameters(name = "Addition Test For Combination: {0} + {1}")
+  public static Collection<Object[]> polynomialImplementations() {
+    return Arrays.asList(new Object[][]{
+            {SimplePolynomial.class, SimplePolynomial.class},
+            {SparsePolynomial.class, SparsePolynomial.class},
+            {SimplePolynomial.class, SparsePolynomial.class},
+            {SparsePolynomial.class, SimplePolynomial.class}
+    });
+  }
 
   /**
    * Test the equals and hash code method with no elements in the polynomial.
    */
   @Test
   public void testEqualsAndHashCodeWithNoElements() {
-    Polynomial expectedPolynomial = new SimplePolynomial();
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
+    Polynomial expectedPolynomial = TestUtils.createPolynomial(polynomialClassOfSecondType);
     assertEquals(expectedPolynomial, polynomialUnderTest);
     assertEquals(expectedPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
@@ -44,6 +74,7 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeMethodWithDifferentClasses() {
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
     polynomialUnderTest.addTerm(2, 3);
     polynomialUnderTest.addTerm(2, 3);
 
@@ -59,11 +90,12 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeMethodWithPositiveStartingTerm() {
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
     polynomialUnderTest.addTerm(2, 3);
     polynomialUnderTest.addTerm(-2, 1);
     polynomialUnderTest.addTerm(2, 0);
 
-    Polynomial expectedPolynomial = new SimplePolynomial();
+    Polynomial expectedPolynomial = TestUtils.createPolynomial(polynomialClassOfSecondType);
     expectedPolynomial.addTerm(2, 3);
     expectedPolynomial.addTerm(-2, 1);
     expectedPolynomial.addTerm(2, 0);
@@ -78,11 +110,12 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsMethodWithNegativeStartingTerm() {
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
     polynomialUnderTest.addTerm(-2, 3);
     polynomialUnderTest.addTerm(2, 1);
     polynomialUnderTest.addTerm(2, 0);
 
-    Polynomial expectedPolynomial = new SimplePolynomial();
+    Polynomial expectedPolynomial = TestUtils.createPolynomial(polynomialClassOfSecondType);
     expectedPolynomial.addTerm(-2, 3);
     expectedPolynomial.addTerm(2, 1);
     expectedPolynomial.addTerm(2, 0);
@@ -96,10 +129,11 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeWithDifferentElementsStartingWithPositiveTerm() {
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
     polynomialUnderTest.addTerm(2, 3);
     polynomialUnderTest.addTerm(-2, 1);
 
-    Polynomial differentPolynomial = new SimplePolynomial();
+    Polynomial differentPolynomial = TestUtils.createPolynomial(polynomialClassOfSecondType);
     differentPolynomial.addTerm(2, 3);
     assertNotEquals(differentPolynomial, polynomialUnderTest);
     assertNotEquals(differentPolynomial.hashCode(), polynomialUnderTest.hashCode());
@@ -111,10 +145,11 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeWithNonZeroAndZeroElements() {
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
     polynomialUnderTest.addTerm(-2, 3);
     polynomialUnderTest.addTerm(-2, 1);
 
-    Polynomial differentPolynomial = new SimplePolynomial();
+    Polynomial differentPolynomial = TestUtils.createPolynomial(polynomialClassOfSecondType);
     assertNotEquals(differentPolynomial, polynomialUnderTest);
     assertNotEquals(differentPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
@@ -125,10 +160,11 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeWithDifferentElementsStartingWithNegativeTerm() {
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
     polynomialUnderTest.addTerm(-2, 3);
     polynomialUnderTest.addTerm(2, 1);
 
-    Polynomial differentPolynomial = new SimplePolynomial();
+    Polynomial differentPolynomial = TestUtils.createPolynomial(polynomialClassOfSecondType);
     differentPolynomial.addTerm(-2, 3);
     assertNotEquals(differentPolynomial, polynomialUnderTest);
   }
@@ -139,6 +175,7 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testEqualsAndHashCodeOfSimplePolynomialWithArrayHavingSameElements() {
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
     polynomialUnderTest.addTerm(3, 0);
     polynomialUnderTest.addTerm(2, 1);
 
@@ -156,9 +193,10 @@ public class TestSimplePolynomialEqualsAndHashcodeMethod {
    */
   @Test
   public void testZeroPolynomialIsEqualToPolynomialWithNoElements() {
+    Polynomial polynomialUnderTest = TestUtils.createPolynomial(polynomialClassOfFirstType);
     polynomialUnderTest.addTerm(0, 0);
     polynomialUnderTest.addTerm(0, 3);
-    Polynomial zeroPolynomial = new SimplePolynomial();
+    Polynomial zeroPolynomial = TestUtils.createPolynomial(polynomialClassOfSecondType);
     assertEquals(zeroPolynomial, polynomialUnderTest);
     assertEquals(zeroPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }

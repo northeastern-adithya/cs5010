@@ -74,7 +74,8 @@ public class TestPolynomialAddMethod {
     secondPolynomialToAdd.addTerm(3, 0);
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(5, 2);
@@ -107,7 +108,8 @@ public class TestPolynomialAddMethod {
     secondPolynomialToAdd.addTerm(3, 0);
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfSecondType);
     expectedResult.addTerm(5, 2);
@@ -134,7 +136,8 @@ public class TestPolynomialAddMethod {
 
     Polynomial actualResult =
             TestUtils.createPolynomial(polynomialClassOfFirstType).add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     assertEquals(expectedResult, actualResult);
@@ -154,7 +157,8 @@ public class TestPolynomialAddMethod {
     Polynomial secondPolynomialToAdd = TestUtils.createPolynomial(polynomialClassOfSecondType);
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(2, 2);
@@ -180,7 +184,8 @@ public class TestPolynomialAddMethod {
     secondPolynomialToAdd.addTerm(-1, 0);
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(2, 2);
@@ -210,7 +215,8 @@ public class TestPolynomialAddMethod {
     secondPolynomialToAdd.addTerm(3, 0);
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(2, 5);
@@ -246,7 +252,8 @@ public class TestPolynomialAddMethod {
     secondPolynomialToAdd.addTerm(3, 0);
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(5, 2);
@@ -280,7 +287,8 @@ public class TestPolynomialAddMethod {
     secondPolynomialToAdd.addTerm(-3, 0);
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(-5, 2);
@@ -314,7 +322,9 @@ public class TestPolynomialAddMethod {
     secondPolynomialToAdd.addTerm(-1, 0);
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
 
     assertEquals(expectedResult, actualResult);
@@ -358,7 +368,9 @@ public class TestPolynomialAddMethod {
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd)
             .add(thirdPolynomialToAdd).add(fourthPolynomialToAdd);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(-2, 3);
@@ -399,8 +411,10 @@ public class TestPolynomialAddMethod {
     Polynomial secondResult = secondPolynomialToAdd.add(thirdPolynomialToAdd)
             .add(firstPolynomialToAdd).add(fourthPolynomialToAdd);
 
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(firstResult);
-    assertIfResultIsSparseIfOneOfThePolynomialIsSparse(secondResult);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(firstResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(secondResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
     assertEquals(firstResult, secondResult);
 
     assertEquals("-2x^3+5x^2+8", firstResult.toString());
@@ -410,12 +424,5 @@ public class TestPolynomialAddMethod {
 
   }
 
-
-  private void assertIfResultIsSparseIfOneOfThePolynomialIsSparse(Polynomial actualResult) {
-    if (polynomialClassOfFirstType.equals(SparsePolynomial.class)
-            || polynomialClassOfSecondType.equals(SparsePolynomial.class)) {
-      assertEquals(SparsePolynomial.class, actualResult.getClass());
-    }
-  }
 
 }
