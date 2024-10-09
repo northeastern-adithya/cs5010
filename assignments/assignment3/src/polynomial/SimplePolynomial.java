@@ -60,7 +60,8 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
   public Polynomial multiply(Polynomial other) {
     if (other instanceof AbstractPolynomial) {
       AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
-      // Delegates the multiplication knowing the fact that the current polynomial is a simple polynomial.
+      // Delegates the multiplication knowing
+      // the fact that the current polynomial is a simple polynomial.
       return abstractPolynomial.multiplySimplePolynomial(this);
     }
     // If a polynomial is not abstract polynomial,
@@ -110,6 +111,26 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
       return that.equalsSimplePolynomial(this);
     }
     return obj.equals(this);
+  }
+
+  /**
+   * Returns the hash code of the polynomial by iterating through
+   * the polynomial elements and adding the hash code of each element.
+   * If the coefficient is zero, it is not considered in the hash code.
+   *
+   * @return the hash code of the polynomial
+   */
+  @Override
+  public int hashCode() {
+    int hashCode = 0;
+    for (int power = 0; power <= this.getDegree(); power++) {
+      int coefficient = this.getCoefficient(power);
+      if (coefficient == 0) {
+        continue;
+      }
+      hashCode += PolynomialUtils.getHashCodeOfPolynomial(coefficient, power);
+    }
+    return hashCode;
   }
 
   @Override

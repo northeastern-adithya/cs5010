@@ -8,7 +8,8 @@ import polynomial.model.PolynomialElement;
 /**
  * Abstract class that represents a polynomial.
  * T denotes the type of polynomial elements that can vary based on the implementation.
- * Implements the common functionalities that can be shared among different polynomial implementations.
+ * Implements the common functionalities that can be shared among different
+ * polynomial implementations.
  */
 public abstract class AbstractPolynomial<T> implements Polynomial {
 
@@ -80,26 +81,6 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
     return findCoefficient(power);
   }
 
-  /**
-   * Returns the hash code of the polynomial by iterating through
-   * the polynomial elements and adding the hash code of each element.
-   * If the coefficient is zero, it is not considered in the hash code.
-   *
-   * @return the hash code of the polynomial
-   */
-  @Override
-  public int hashCode() {
-    int hashCode = 0;
-    for (int power = 0; power <= this.getDegree(); power++) {
-      int coefficient = this.getCoefficient(power);
-      if (coefficient == 0) {
-        continue;
-      }
-      hashCode += PolynomialUtils.getHashCodeOfPolynomial(coefficient, power);
-    }
-    return hashCode;
-  }
-
 
   /**
    * Adds the coefficient to the appropriate index of polynomial elements list based on the power.
@@ -153,7 +134,9 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
     Polynomial resultAfterAddition = new SparsePolynomial();
     int previousPower = -1;
     for (PolynomialElement element : sparsePolynomial.polynomialElements) {
-      resultAfterAddition.addTerm(element.getCoefficient() + this.getCoefficient(element.getPower()), element.getPower());
+      resultAfterAddition
+              .addTerm(element.getCoefficient()
+                      + this.getCoefficient(element.getPower()), element.getPower());
 
       // Adding the coefficients of the terms that are not present in the sparse polynomial.
       for (int power = previousPower + 1; power < element.getPower(); power++) {
@@ -225,7 +208,8 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   /**
    * Compares if the given object is equals to the sparse polynomial.
    * Polynomials are equal if they have same non-zero coefficients at the same power.
-   * This optimises the comparison by considering that sparse polynomial has only non-zero coefficients.
+   * This optimises the comparison by considering
+   * that sparse polynomial has only non-zero coefficients.
    *
    * @return true if the given object is equals to the sparse polynomial, false otherwise
    */
@@ -235,7 +219,8 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
       if (this.getCoefficient(element.getPower()) != element.getCoefficient()) {
         return false;
       }
-      // Checking if the coefficients of the terms that are not present in the sparse polynomial are zero.
+      // Checking if the coefficients of the terms that
+      // are not present in the sparse polynomial are zero.
       for (int power = previousPower + 1; power < element.getPower(); power++) {
         if (this.getCoefficient(power) != 0) {
           return false;

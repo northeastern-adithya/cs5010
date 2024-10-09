@@ -24,7 +24,8 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   protected void addCoefficientToAppropriateIndex(int coefficient, int power) {
     if (power <= this.getDegree()) {
       int index = 0;
-      while (index < polynomialElements.size() && polynomialElements.get(index).getPower() < power) {
+      while (index < polynomialElements.size()
+              && polynomialElements.get(index).getPower() < power) {
         index++;
       }
       int existingCoefficient = this.getCoefficient(power);
@@ -32,7 +33,8 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
         polynomialElements.add(index, new PolynomialElement(power, coefficient));
       } else {
         // This cases handles the scenario when the power already exists in the polynomial.
-        polynomialElements.set(index, new PolynomialElement(power, existingCoefficient + coefficient));
+        polynomialElements.set(index,
+                new PolynomialElement(power, existingCoefficient + coefficient));
       }
     } else {
       polynomialElements.add(new PolynomialElement(power, coefficient));
@@ -59,7 +61,8 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   public Polynomial add(Polynomial other) {
     if (other instanceof AbstractPolynomial) {
       AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
-      // Delegates the addition knowing the fact that the current polynomial is a sparse polynomial.
+      // Delegates the addition knowing the fact
+      // that the current polynomial is a sparse polynomial.
       return abstractPolynomial.addSparsePolynomial(this);
     }
     // If a polynomial is not abstract polynomial,
@@ -71,7 +74,8 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   public Polynomial multiply(Polynomial other) {
     if (other instanceof AbstractPolynomial) {
       AbstractPolynomial<?> abstractPolynomial = (AbstractPolynomial<?>) other;
-      // Delegates the multiplication knowing the fact that the current polynomial is a sparse polynomial.
+      // Delegates the multiplication knowing
+      // the fact that the current polynomial is a sparse polynomial.
       return abstractPolynomial.multiplySparsePolynomial(this);
     }
     // If a polynomial is not abstract polynomial,
@@ -83,14 +87,16 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   public Polynomial derivative() {
     Polynomial resultAfterDerivative = new polynomial.SparsePolynomial();
     polynomialElements.forEach(
-            element -> {
-              // Zero is the derivative of a constant, hence ignoring it.
-              if (element.getPower() == 0) {
-                return;
-              }
-              int derivativeCoefficient = findDerivativeCoefficient(element.getCoefficient(), element.getPower());
-              resultAfterDerivative.addTerm(derivativeCoefficient, element.getPower() - 1);
+        element -> {
+            // Zero is the derivative of a constant, hence ignoring it.
+            if (element.getPower() == 0) {
+              return;
             }
+            int derivativeCoefficient =
+                    findDerivativeCoefficient(element.getCoefficient(), element.getPower());
+            resultAfterDerivative
+                    .addTerm(derivativeCoefficient, element.getPower() - 1);
+        }
     );
     return resultAfterDerivative;
   }
@@ -99,7 +105,7 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   public double evaluate(double x) {
     return polynomialElements.stream()
             .mapToDouble(element
-                    -> evaluateValue(element.getCoefficient(), element.getPower(), x))
+                -> evaluateValue(element.getCoefficient(), element.getPower(), x))
             .sum();
   }
 
@@ -126,8 +132,12 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
     return obj.equals(this);
   }
 
-  // Overriding the hashCode to improve the speed since sparse polynomial has
-  // only non-zero elements.
+  /**
+   * Returns the hash code of the polynomial by iterating through
+   * the polynomial elements and adding the hash code of each element.
+   *
+   * @return the hash code of the polynomial
+   */
   @Override
   public int hashCode() {
     int hashCode = 0;
@@ -161,9 +171,11 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
 
     Polynomial resultAfterAddition = new SparsePolynomial();
 
-    while (indexOfThis < thisPolynomialSize && indexOfOtherSparsePolynomial < otherSparsePolynomialSize) {
+    while (indexOfThis < thisPolynomialSize
+            && indexOfOtherSparsePolynomial < otherSparsePolynomialSize) {
       PolynomialElement thisElement = this.polynomialElements.get(indexOfThis);
-      PolynomialElement otherElement = sparsePolynomial.polynomialElements.get(indexOfOtherSparsePolynomial);
+      PolynomialElement otherElement
+              = sparsePolynomial.polynomialElements.get(indexOfOtherSparsePolynomial);
       if (thisElement.getPower() == otherElement.getPower()) {
         int sum = thisElement.getCoefficient() + otherElement.getCoefficient();
         resultAfterAddition.addTerm(sum, thisElement.getPower());
@@ -185,7 +197,8 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
     }
 
     while (indexOfOtherSparsePolynomial < otherSparsePolynomialSize) {
-      PolynomialElement otherElement = sparsePolynomial.polynomialElements.get(indexOfOtherSparsePolynomial);
+      PolynomialElement otherElement
+              = sparsePolynomial.polynomialElements.get(indexOfOtherSparsePolynomial);
       resultAfterAddition.addTerm(otherElement.getCoefficient(), otherElement.getPower());
       indexOfOtherSparsePolynomial++;
     }
