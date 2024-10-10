@@ -72,6 +72,7 @@ public class SimplePolynomial extends AbstractPolynomial<Integer> {
   @Override
   public Polynomial derivative() {
     Polynomial resultAfterDerivative = new SimplePolynomial();
+    // Ignoring the first derivative since derivative of a constant is 0.
     for (int power = 1; power <= this.getDegree(); power++) {
       int derivativeCoefficient = findDerivativeCoefficient(this.getCoefficient(power), power);
       resultAfterDerivative.addTerm(derivativeCoefficient, power - 1);

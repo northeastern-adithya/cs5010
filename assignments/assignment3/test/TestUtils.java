@@ -1,6 +1,7 @@
 import java.lang.reflect.InvocationTargetException;
 
 import polynomial.Polynomial;
+import polynomial.SimplePolynomial;
 import polynomial.SparsePolynomial;
 
 import static org.junit.Assert.assertEquals;
@@ -48,6 +49,23 @@ public class TestUtils {
     if (polynomialClassOfFirstType.equals(SparsePolynomial.class)
             || polynomialClassOfSecondType.equals(SparsePolynomial.class)) {
       assertEquals(SparsePolynomial.class, actualResult.getClass());
+    }
+  }
+
+  /**
+   * Asserts if the result is simple if both of the polynomial is simple.
+   *
+   * @param actualResult                the actual result to be checked.
+   * @param polynomialClassOfFirstType  the class of the first polynomial.
+   * @param polynomialClassOfSecondType the class of the second polynomial.
+   */
+  public static void assertIfResultIsSimpleIfBothThePolynomialAreSimple(
+          Polynomial actualResult,
+          Class<?> polynomialClassOfFirstType,
+          Class<?> polynomialClassOfSecondType) {
+    if (polynomialClassOfFirstType.equals(SimplePolynomial.class)
+            && polynomialClassOfSecondType.equals(SimplePolynomial.class)) {
+      assertEquals(SimplePolynomial.class, actualResult.getClass());
     }
   }
 }

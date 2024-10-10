@@ -182,4 +182,34 @@ public class TestPolynomialToStringMethod {
   }
 
 
+  /**
+   * Test the toString method with one as coefficient in the beginning.
+   */
+  @Test
+  public void testToStringWithOneCoefficientInTheBeginning() {
+    polynomialUnderTest.addTerm(1, 6);
+    polynomialUnderTest.addTerm(2, 2);
+    polynomialUnderTest.addTerm(1, 3);
+    polynomialUnderTest.addTerm(5, 0);
+    assertEquals("1x^6+1x^3+2x^2+5", polynomialUnderTest.toString());
+  }
+
+
+  @Test
+  public void testEachPowerAppearsOnce() {
+    polynomialUnderTest.addTerm(1, 6);
+    polynomialUnderTest.addTerm(2, 6);
+    polynomialUnderTest.addTerm(3, 6);
+    polynomialUnderTest.addTerm(4, 3);
+    assertEquals("6x^6+4x^3", polynomialUnderTest.toString());
+  }
+
+  @Test
+  public void testToStringReturnsTermsWithNonZeroCoefficients() {
+    polynomialUnderTest.addTerm(1, 6);
+    polynomialUnderTest.addTerm(0, 5);
+    assertEquals("1x^6", polynomialUnderTest.toString());
+  }
+
+
 }

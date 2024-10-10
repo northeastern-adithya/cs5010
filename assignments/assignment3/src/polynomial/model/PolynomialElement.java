@@ -27,11 +27,11 @@ public class PolynomialElement {
    * Constructs a new PolynomialElement with the
    * given power and coefficient.
    *
-   * @param power       the power of the element
    * @param coefficient the coefficient of the element
+   * @param power       the power of the element
    * @throws IllegalArgumentException if the power is negative
    */
-  public PolynomialElement(final int power, final int coefficient) throws IllegalArgumentException {
+  public PolynomialElement(final int coefficient, final int power) throws IllegalArgumentException {
     PolynomialUtils.validatePower(power);
     this.power = power;
     this.coefficient = coefficient;
@@ -89,8 +89,8 @@ public class PolynomialElement {
 
   /**
    * Returns the string representation of the PolynomialElement.
-   * If the power is 0, returns the coefficient.
    * If the coefficient is 0, returns an empty string.
+   * If the power is 0, returns the coefficient.
    * Otherwise, returns the coefficient and power in the form
    * ax^b where a is coefficient and b is the power.
    *
@@ -98,11 +98,13 @@ public class PolynomialElement {
    */
   @Override
   public String toString() {
-    if (this.power == 0) {
-      return Integer.toString(this.coefficient);
-    }
+
     if (this.coefficient == 0) {
       return PolynomialConstants.EMPTY_STRING;
+    }
+
+    if (this.power == 0) {
+      return Integer.toString(this.coefficient);
     }
     return this.coefficient + PolynomialConstants.X_POWER_SYMBOL + this.power;
   }

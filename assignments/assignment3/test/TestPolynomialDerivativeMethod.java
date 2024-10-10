@@ -11,6 +11,7 @@ import polynomial.SimplePolynomial;
 import polynomial.SparsePolynomial;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 
 /**
@@ -78,6 +79,8 @@ public class TestPolynomialDerivativeMethod {
 
     assertEquals(expectedResult, actualResult);
     assertEquals("18x^5+8x^3+3x^2", actualResult.toString());
+    assertNotEquals(actualResult,polynomialUnderTest);
+    assertEquals("3x^6+2x^4+1x^3+5",polynomialUnderTest.toString());
   }
 
 
@@ -100,6 +103,9 @@ public class TestPolynomialDerivativeMethod {
 
     assertEquals(expectedResult, actualResult);
     assertEquals("-18x^5-8x^3-3x^2", actualResult.toString());
+
+    assertNotEquals(actualResult,polynomialUnderTest);
+    assertEquals("-3x^6-2x^4-1x^3-5",polynomialUnderTest.toString());
   }
 
 
@@ -122,6 +128,9 @@ public class TestPolynomialDerivativeMethod {
 
     assertEquals(expectedResult, actualResult);
     assertEquals("-18x^5+8x^3+3x^2", actualResult.toString());
+
+    assertNotEquals(actualResult,polynomialUnderTest);
+    assertEquals("-3x^6+2x^4+1x^3-5",polynomialUnderTest.toString());
   }
 
   /**

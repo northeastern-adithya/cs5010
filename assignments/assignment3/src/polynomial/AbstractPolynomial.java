@@ -105,9 +105,9 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
 
   /**
    * Adds the given simple polynomial to the current polynomial.
-   *
+   * This returns a simple polynomial since one of the element is a simple polynomial.
    * @param simplePolynomial the simple polynomial to be added
-   * @return the simple polynomial after adding the simple polynomial
+   * @return the polynomial after adding the simple polynomial
    */
   protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
     Polynomial resultAfterAdding = new SimplePolynomial();
@@ -126,6 +126,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   /**
    * Adds the given sparse polynomial to the current polynomial.
    * The following optimises considering that sparse polynomial has only non-zero coefficients.
+   * This returns a sparse polynomial since one of the element is a sparse polynomial.
    *
    * @param sparsePolynomial the sparse polynomial to be added
    * @return the sparse polynomial after adding the sparse polynomial
@@ -152,6 +153,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
 
   /**
    * Multiplies the given simple polynomial with the current polynomial.
+   * This returns a simple polynomial since one of the element is a simple polynomial.
    *
    * @param simplePolynomial the simple polynomial to be multiplied
    * @return the simple polynomial after multiplying the simple polynomial
@@ -170,6 +172,7 @@ public abstract class AbstractPolynomial<T> implements Polynomial {
   /**
    * Multiplies the given sparse polynomial with the current polynomial.
    * The following optimises considering that sparse polynomial has only non-zero coefficients.
+   * This returns a sparse polynomial since one of the element is a sparse polynomial.
    *
    * @param sparsePolynomial the sparse polynomial to be multiplied
    * @return the sparse polynomial after multiplying the sparse polynomial

@@ -77,6 +77,9 @@ public class TestPolynomialAddMethod {
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(5, 2);
     expectedResult.addTerm(-1, 1);
@@ -110,6 +113,8 @@ public class TestPolynomialAddMethod {
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfSecondType);
     expectedResult.addTerm(5, 2);
@@ -138,6 +143,8 @@ public class TestPolynomialAddMethod {
             TestUtils.createPolynomial(polynomialClassOfFirstType).add(secondPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     assertEquals(expectedResult, actualResult);
@@ -158,6 +165,8 @@ public class TestPolynomialAddMethod {
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
@@ -185,6 +194,8 @@ public class TestPolynomialAddMethod {
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
@@ -216,6 +227,8 @@ public class TestPolynomialAddMethod {
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
@@ -254,6 +267,8 @@ public class TestPolynomialAddMethod {
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(5, 2);
@@ -289,6 +304,8 @@ public class TestPolynomialAddMethod {
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(-5, 2);
@@ -323,6 +340,8 @@ public class TestPolynomialAddMethod {
 
     Polynomial actualResult = firstPolynomialToAdd.add(secondPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
@@ -370,6 +389,8 @@ public class TestPolynomialAddMethod {
             .add(thirdPolynomialToAdd).add(fourthPolynomialToAdd);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
@@ -414,6 +435,10 @@ public class TestPolynomialAddMethod {
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(firstResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(secondResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(firstResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(secondResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
     assertEquals(firstResult, secondResult);
 

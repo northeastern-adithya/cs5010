@@ -101,6 +101,7 @@ public class TestPolynomialEqualsAndHashCodeMethod {
     expectedPolynomial.addTerm(2, 0);
 
     assertEquals(expectedPolynomial, polynomialUnderTest);
+    assertEquals(polynomialUnderTest,polynomialUnderTest);
     assertEquals(expectedPolynomial.hashCode(), polynomialUnderTest.hashCode());
   }
 

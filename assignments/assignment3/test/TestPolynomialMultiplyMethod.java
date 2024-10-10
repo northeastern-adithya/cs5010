@@ -73,6 +73,8 @@ public class TestPolynomialMultiplyMethod {
     Polynomial actualResult = firstPolynomialToMultiply.multiply(secondPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(6, 4);
@@ -109,6 +111,8 @@ public class TestPolynomialMultiplyMethod {
     Polynomial actualResult = firstPolynomialToMultiply.multiply(secondPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     expectedResult.addTerm(6, 4);
@@ -138,6 +142,8 @@ public class TestPolynomialMultiplyMethod {
     Polynomial actualResult = firstPolynomialToMultiply.multiply(secondPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     assertEquals(expectedResult, actualResult);
@@ -158,6 +164,9 @@ public class TestPolynomialMultiplyMethod {
     Polynomial actualResult = firstPolynomialToMultiply.multiply(secondPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
     assertEquals(expectedResult, actualResult);
@@ -181,6 +190,8 @@ public class TestPolynomialMultiplyMethod {
 
     Polynomial actualResult = firstPolynomialToMultiply.multiply(secondPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
@@ -210,6 +221,8 @@ public class TestPolynomialMultiplyMethod {
 
     Polynomial actualResult = firstPolynomialToMultiply.multiply(secondPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     assertEquals("6x^7-4x^6+10x^5+6x^4-4x^3+19x^2-6x^1+15", actualResult.toString());
@@ -242,6 +255,8 @@ public class TestPolynomialMultiplyMethod {
     Polynomial actualResult = firstPolynomialToMultiply.multiply(secondPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     assertEquals("6x^4+10x^3+23x^2+16x^1+15", actualResult.toString());
     assertEquals(4, actualResult.getDegree());
@@ -271,6 +286,8 @@ public class TestPolynomialMultiplyMethod {
 
     Polynomial actualResult = firstPolynomialToMultiply.multiply(secondPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     assertEquals("6x^4+10x^3+23x^2+16x^1+15", actualResult.toString());
@@ -308,6 +325,8 @@ public class TestPolynomialMultiplyMethod {
             .multiply(thirdPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
     assertEquals("-4x^9+6x^8+4x^7+36x^6+28x^5+40x^3", actualResult.toString());
     assertEquals(9, actualResult.getDegree());
 
@@ -336,11 +355,15 @@ public class TestPolynomialMultiplyMethod {
             .multiply(thirdPolynomialToMultiply);
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(firstResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(firstResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     Polynomial secondResult = secondPolynomialToMultiply.multiply(firstPolynomialToMultiply)
             .multiply(thirdPolynomialToMultiply);
 
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(secondResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(secondResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     assertEquals(firstResult, secondResult);
@@ -374,6 +397,8 @@ public class TestPolynomialMultiplyMethod {
             .add(anotherPolynomialToDoOperations).derivative();
 
     TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
             polynomialClassOfFirstType, polynomialClassOfSecondType);
 
     assertEquals("-30x^4-28x^3-30x^2-20x^1-4", actualResult.toString());

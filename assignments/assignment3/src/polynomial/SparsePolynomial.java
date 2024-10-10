@@ -30,18 +30,20 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
       }
       int existingCoefficient = this.getCoefficient(power);
       if (existingCoefficient == 0) {
-        polynomialElements.add(index, new PolynomialElement(power, coefficient));
+        polynomialElements.add(index, new PolynomialElement(coefficient, power));
       } else {
         // This cases handles the scenario when the power already exists in the polynomial.
         int coefficientSum = existingCoefficient + coefficient;
         if (coefficientSum == 0) {
+          // Removing the element if the sum of coefficients becomes zero.
           polynomialElements.remove(index);
         } else {
-          polynomialElements.set(index, new PolynomialElement(power, coefficientSum));
+          // Updating the coefficient if the sum is non-zero.
+          polynomialElements.set(index, new PolynomialElement(coefficientSum, power));
         }
       }
     } else {
-      polynomialElements.add(new PolynomialElement(power, coefficient));
+      polynomialElements.add(new PolynomialElement(coefficient, power));
     }
   }
 
@@ -154,6 +156,7 @@ public class SparsePolynomial extends AbstractPolynomial<PolynomialElement> {
   @Override
   protected Polynomial addSimplePolynomial(SimplePolynomial simplePolynomial) {
     // Using addition with sparse polynomial since its more optimized.
+    // Function output is changed to a sparse polynomial.
     return simplePolynomial.addSparsePolynomial(this);
   }
 
