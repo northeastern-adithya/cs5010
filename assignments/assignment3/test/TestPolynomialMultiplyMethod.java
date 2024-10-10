@@ -404,4 +404,48 @@ public class TestPolynomialMultiplyMethod {
     assertEquals("-30x^4-28x^3-30x^2-20x^1-4", actualResult.toString());
     assertEquals(4, actualResult.getDegree());
   }
+
+  /**
+   * Test the multiplication with different powers in both the polynomial.
+   */
+  @Test
+  public void testMultiplicationWithUniquePowers() {
+    Polynomial testFirstPolynomialToMultiply =
+            TestUtils.createPolynomial(polynomialClassOfFirstType);
+    testFirstPolynomialToMultiply.addTerm(2, 3);
+    testFirstPolynomialToMultiply.addTerm(1, 2);
+    testFirstPolynomialToMultiply.addTerm(4, 0);
+
+    Polynomial testSecondPolynomialToMultiply =
+            TestUtils.createPolynomial(polynomialClassOfSecondType);
+    testSecondPolynomialToMultiply.addTerm(-1, 6);
+    testSecondPolynomialToMultiply.addTerm(2, 5);
+    testSecondPolynomialToMultiply.addTerm(10, 4);
+
+    Polynomial actualResult = testFirstPolynomialToMultiply
+            .multiply(testSecondPolynomialToMultiply);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+
+    Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
+    expectedResult.addTerm(-2, 9);
+    expectedResult.addTerm(3, 8);
+    expectedResult.addTerm(22, 7);
+    expectedResult.addTerm(6, 6);
+    expectedResult.addTerm(8, 5);
+    expectedResult.addTerm(40, 4);
+    assertEquals(expectedResult, actualResult);
+    assertEquals("-2x^9+3x^8+22x^7+6x^6+8x^5+40x^4", actualResult.toString());
+
+    assertEquals(9, actualResult.getDegree());
+
+    // Check if the original polynomials are not modified.
+    assertEquals("2x^3+1x^2+4", testFirstPolynomialToMultiply.toString());
+    assertEquals("-1x^6+2x^5+10x^4", testSecondPolynomialToMultiply.toString());
+
+    assertNotEquals(testFirstPolynomialToMultiply, actualResult);
+    assertNotEquals(testSecondPolynomialToMultiply, actualResult);
+  }
 }

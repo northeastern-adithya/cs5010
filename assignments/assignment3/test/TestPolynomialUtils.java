@@ -18,6 +18,9 @@ public class TestPolynomialUtils {
     assertEquals(1056, PolynomialUtils.getHashCodeOfPolynomial(3, 2));
   }
 
+  /**
+   * Test the validatePower method to throw illegal argument exception on negative power.
+   */
   @Test
   public void testValidatePowerThrowsIllegalArgumentException() {
     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,

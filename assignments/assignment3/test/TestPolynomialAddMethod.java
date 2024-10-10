@@ -449,5 +449,46 @@ public class TestPolynomialAddMethod {
 
   }
 
+  /**
+   * Test the add method with different powers in both the polynomial.
+   */
+  @Test
+  public void testAdditionWithUniquePowers() {
+    Polynomial testFirstPolynomialToAdd = TestUtils.createPolynomial(polynomialClassOfFirstType);
+    testFirstPolynomialToAdd.addTerm(2, 3);
+    testFirstPolynomialToAdd.addTerm(1, 2);
+    testFirstPolynomialToAdd.addTerm(4, 0);
+
+    Polynomial testSecondPolynomialToAdd = TestUtils.createPolynomial(polynomialClassOfSecondType);
+    testSecondPolynomialToAdd.addTerm(-1, 6);
+    testSecondPolynomialToAdd.addTerm(2, 5);
+    testSecondPolynomialToAdd.addTerm(10, 4);
+
+    Polynomial actualResult = testFirstPolynomialToAdd.add(testSecondPolynomialToAdd);
+    TestUtils.assertIfResultIsSparseIfOneOfThePolynomialIsSparse(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+    TestUtils.assertIfResultIsSimpleIfBothThePolynomialAreSimple(actualResult,
+            polynomialClassOfFirstType, polynomialClassOfSecondType);
+
+    Polynomial expectedResult = TestUtils.createPolynomial(polynomialClassOfFirstType);
+    expectedResult.addTerm(-1, 6);
+    expectedResult.addTerm(2, 5);
+    expectedResult.addTerm(2, 3);
+    expectedResult.addTerm(1, 2);
+    expectedResult.addTerm(10, 4);
+    expectedResult.addTerm(4, 0);
+    assertEquals(expectedResult, actualResult);
+    assertEquals("-1x^6+2x^5+10x^4+2x^3+1x^2+4", actualResult.toString());
+
+    assertEquals(6, actualResult.getDegree());
+
+    // Check if the original polynomials are not modified.
+    assertEquals("2x^3+1x^2+4", testFirstPolynomialToAdd.toString());
+    assertEquals("-1x^6+2x^5+10x^4", testSecondPolynomialToAdd.toString());
+
+    assertNotEquals(testFirstPolynomialToAdd, actualResult);
+    assertNotEquals(testSecondPolynomialToAdd, actualResult);
+  }
+
 
 }
