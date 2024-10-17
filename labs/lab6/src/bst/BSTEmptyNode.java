@@ -34,11 +34,13 @@ public class BSTEmptyNode<T extends Comparable<T>> implements BSTNode<T> {
 
   @Override
   public void preorder(Consumer<T> consumer) {
+    // Implementation is done in solution package.
   }
 
 
   @Override
   public void postorder(Consumer<T> consumer) {
+    // Implementation is done in solution package.
 
   }
 

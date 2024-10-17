@@ -34,11 +34,15 @@ public class BSTEmptyNode<T extends Comparable<T>> implements BSTNode<T> {
 
   @Override
   public void preorder(Consumer<T> consumer) {
+    // Empty node does not contain any data,
+    // hence consumer is not applied.
   }
 
 
   @Override
   public void postorder(Consumer<T> consumer) {
+    // Empty node does not contain any data,
+    // hence consumer is not applied.
   }
 
   @Override
@@ -48,6 +52,9 @@ public class BSTEmptyNode<T extends Comparable<T>> implements BSTNode<T> {
 
   @Override
   public boolean same(BSTNode<T> other) {
-    return false;
+    if (this == other) {
+      return true;
+    }
+    return other instanceof BSTEmptyNode;
   }
 }

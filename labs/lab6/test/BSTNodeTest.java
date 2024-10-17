@@ -1,12 +1,23 @@
 import org.junit.Test;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
-import static org.junit.Assert.*;
+import solution.BSTEmptyNode;
+import solution.BSTNode;
+import solution.NothingThereException;
 
-import solution.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+
+/**
+ * This class tests the methods available in BSTNode.
+ */
 public class BSTNodeTest {
 
   @Test

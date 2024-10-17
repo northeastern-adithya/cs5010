@@ -4,13 +4,20 @@ import java.util.function.Consumer;
 
 /**
  * This class represents a data-containing node of the binary search tree
- * It mutates on all relevant operations
+ * It mutates on all relevant operations.
  */
 public class BSTElementNode<T extends Comparable<T>> implements BSTNode<T> {
   private BSTNode<T> left;
   private BSTNode<T> right;
   private T data;
 
+  /**
+   * Constructor for the BSTElementNode with data and its left and right children.
+   *
+   * @param data  the data to be stored in the node
+   * @param left  the left child of the node
+   * @param right the right child of the node
+   */
   public BSTElementNode(T data, BSTNode<T> left, BSTNode<T> right) {
     this.data = data;
     this.left = left;
@@ -67,25 +74,29 @@ public class BSTElementNode<T extends Comparable<T>> implements BSTNode<T> {
 
   @Override
   public String toString() {
-    String left, right, middle;
 
-    middle = this.data.toString();
-    left = this.left.toString();
-    right = this.right.toString();
-    if (left.length() > 0) left = left + " ";
-    if (right.length() > 0) right = " " + right;
+    String middle = this.data.toString();
+    String left = this.left.toString();
+    String right = this.right.toString();
+    if (left.length() > 0) {
+      left = left + " ";
+    }
+    if (right.length() > 0) {
+      right = " " + right;
+    }
     return left + middle + right;
   }
 
   @Override
   public void preorder(Consumer<T> consumer) {
+    // Implementation is done in solution.
 
   }
 
 
   @Override
   public void postorder(Consumer<T> consumer) {
-
+    // Implementation is done in solution.
   }
 
   @Override
