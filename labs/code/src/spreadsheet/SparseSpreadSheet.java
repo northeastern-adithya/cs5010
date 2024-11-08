@@ -1,17 +1,14 @@
 package spreadsheet;
 
-import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 /**
- * This class represents a sparse spreadsheet. A sparse spreadsheet is a
- * spreadsheet
- * with a large number of empty cells. It represents this efficiently using a
- * hash map.
+ * This class represents a sparse spreadsheet. A sparse spreadsheet is a spreadsheet
+ * with a large number of empty cells. It represents this efficiently using a hash map.
  */
-public class SparseSpreadSheet implements BetterSpreadSheet {
+public class SparseSpreadSheet implements SpreadSheet {
   private final Map<CellPosition, Double> sheet;
   private int width;
   private int height;
@@ -64,16 +61,6 @@ public class SparseSpreadSheet implements BetterSpreadSheet {
   @Override
   public int getHeight() {
     return this.height;
-  }
-
-  @Override
-  public void setValueInRegion(Point upperLeft, Point lowerRight,
-                               double value) {
-    for (int row = upperLeft.x; row <= lowerRight.x; row++) {
-      for (int col = lowerRight.y; col <= upperLeft.y; col++) {
-        this.set(row, col, value);
-      }
-    }
   }
 
   private static class CellPosition {
