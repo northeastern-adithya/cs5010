@@ -18,7 +18,6 @@
       <sourceFolder url="file://$MODULE_DIR$/labs/lab4/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/assignments/assignment3/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assignments/assignment3/test" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/syllabus/code" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/syllabus/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/syllabus/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/labs/lab6/src" isTestSource="false" />
@@ -31,6 +30,12 @@
       <sourceFolder url="file://$MODULE_DIR$/labs/lab9/code/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/labs/lab9/code1/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/labs/lab9/code1/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/syllabus/code/BasicMVC/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/syllabus/code/TextUI/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/syllabus/swingdemo" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/syllabus/code/GeneralCommandCallbacks/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/syllabus/code/KeyboardEvents/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/syllabus/code/KeyboardMaps/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
