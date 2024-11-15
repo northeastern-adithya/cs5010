@@ -10,6 +10,11 @@ public class GenericElementNode<T> implements GenericListADTNode<T> {
   private T object;
   private GenericListADTNode<T> rest;
 
+  /**
+   * Constructor for the GenericElementNode class.
+   * @param p the object data
+   * @param rest the rest of the list
+   */
   public GenericElementNode(T p, GenericListADTNode<T> rest) {
     this.object = p;
     this.rest = rest;
