@@ -9,7 +9,7 @@ public interface PillCounter {
    * is general enough to work with machines with different pill-filling
    * capacities.
    *
-   * @param count
+   * @param count The number of pills to add.
    */
   void addPill(int count);
 
