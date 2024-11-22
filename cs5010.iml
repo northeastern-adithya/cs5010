@@ -36,6 +36,7 @@
       <sourceFolder url="file://$MODULE_DIR$/syllabus/code/GeneralCommandCallbacks/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/syllabus/code/KeyboardEvents/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/syllabus/code/KeyboardMaps/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/labs/lab10/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

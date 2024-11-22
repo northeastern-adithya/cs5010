@@ -55,6 +55,8 @@ public class JFrameView extends JFrame implements IView {
 
   @Override
   public void addFeatures(Features features) {
+    (Controller) controller = (Controller) features;
+    co
     echoButton.addActionListener(evt -> features.echoOutput(input.getText()));
     toggleButton.addActionListener(evt -> features.toggleColor());
     exitButton.addActionListener(evt -> features.exitProgram());
